@@ -1,0 +1,61 @@
+body {
+    --culor-fundal: rgb(124, 111, 111) ;
+    background-color: var(--culor-fundal);
+}
+
+p {
+    border: 1px solid blueviolet;
+}
+
+
+
+#grid-pagina > * {
+    border: 1 px rgb(64, 63, 63);
+    box-shadow: 0px 0px 5px rgb(64, 63, 63) ;
+    padding: 10px;
+}
+
+#grid-pagina {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    grid-template-areas:"welcome welcome welcome"
+                        "promotii promotii anunturi"
+                        "fig1 orar orar"
+                        "fig2 orar orar"
+                        "fig3 orar orar"
+                        "produse produse produse"
+                        "index-intrebari index-intrebari index-intrebari";
+}
+
+figure { /* Resetare spatiere */
+    margin: 0;
+}
+
+figure > img {
+    width: 100%;
+}
+
+
+.ballet {
+  font-family: "Ballet", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+ 
+ 
+#fig1{
+    grid-area: fig1;
+}
+#fig2{
+    grid-area: fig2;
+}
+#fig3{
+    grid-area: fig3;
+}
+#produse{
+    grid-area: produse;
+}
+#index-intrebari{
+    grid-area: index-intrebari;
+}
