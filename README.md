@@ -1,6 +1,6 @@
 # Fullstack Stock Trading Platform
 
-## The platform for Trading Blockchain Stocks easily without any commisions
+## The platform for Trading the most popular Stocks easily without any commisions
 
 ### The tech stack is : HTML, CSS, JS, Node.js
 

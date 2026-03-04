@@ -1,5 +1,5 @@
 body {
-    --culor-fundal: rgb(124, 111, 111) ;
+    --culor-fundal: rgba(175, 210, 238, 0.767) ;
     background-color: var(--culor-fundal);
 }
 
