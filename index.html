@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./resourses/css/main.css" type="text/css" />
 </head>
 <body>
-    <header>
+    <header id="top">
         <h1>Davidious Stock Trading Platform</h1>
 
         <nav>
@@ -28,11 +28,13 @@
                         <ul>
                             <li><a href="#about">About</a></li>
                             <li><a href="#stocks">Stocks</a></li>
+                            <li><a href="#learn">Learn</a></li>
                         </ul>
                 </li>
                 <li><a href="#profile">Stocks</a></li>
                 <li><a href="#Why_Davidious">Why Davidious</a></li>
                 <li><a href="#events">Events</a></li>
+                <li><a href="#contacts">Contacts</a></li>
             </ul>
         </nav>
     </header>
@@ -40,7 +42,7 @@
         <section>
             <section id="about">
                 <hgroup>
-                    <h2>Stock Trading Platform</h2>
+                    <h2>Stock Market</h2>
                     <h3>The platform for Trading the most popular Stocks easily without any commisions</h3>
                 </hgroup>
                 <p>
@@ -65,14 +67,62 @@
                         rel="noopener">
                         Investopedia
                     </a>
-                    <h2>Detailed Financial Term</h2>
-
+                    
+                </p>
+                <h2>Detailed Financial Term</h2>
                     <p>
                         <a href="https://www.investopedia.com/terms/i/ipo.asp#what<wbr>-is<wbr>-an<wbr>-ipo">
                             https://www.investopedia.com/terms/i/ipo.asp#what<wbr>-is<wbr>-an<wbr>-ipo
                         </a>
                     </p>
-                </p>
+
+                    <span>You can dowload the statistics for stock GOOGL</span>
+                    <a href="./resourses/images/google_statistics.jpg" download="googl_statistics.jpg">here</a>
+
+                <h3>Stock Trading Dashboard Metrics</h3>
+
+                <p>New Daily Signups (Low)</p>
+                <meter 
+                    value="15"  
+                    min="0" 
+                    max="100" 
+                    low="30" 
+                    high="70" 
+                    optimum="50"
+                >
+                    15 out of 100
+                </meter>
+
+                <p>Active Trades Today (High)</p>
+                <meter 
+                    value="90"  
+                    min="0" 
+                    max="100" 
+                    low="30" 
+                    high="70" 
+                    optimum="50"
+                >
+                    90 out of 100
+                </meter>
+            </section>
+            <section id="learn">
+                <section>
+                    <a href="https://www.youtube.com/embed/xHU5MHuUSKI?si=D7gPZuy1jExg3yIL" target="player">Tutorial 1</a>
+                </section>
+                <section>
+                    <a href="https://www.youtube.com/embed/_YVQN6_nkfs?si=LJ_k6aTEa8Waq6Ba" target="player">Tutorial 2</a>
+                </section>
+                    
+                <section>
+                    <iframe 
+                        name="player" 
+                        width="560" 
+                        height="315" 
+                        src="https://www.youtube.com/embed/xHU5MHuUSKI?si=D7gPZuy1jExg3yIL" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                </section>
             </section>
             <section id="stocks">
                 Stocks
@@ -111,11 +161,113 @@
                        title="Price movement of AAPL stock over the last 4 years"
                     >
                 </picture>
+                <figcaption>Price movement of <b>AAPL</b> stock over the last <b>4</b> years</figcaption>
             </figure>
-            <figcaption>Price movement of <b>AAPL</b> stock over the last <b>4</b> years</figcaption>
+            
+            <a href="./resourses/images/tesla_statistics.jpg" target="_self">
+                <img
+                    src="./resourses/images/tesla_statistics_small.jpg"
+                    alt="The pric movement of the stock Tesla"
+                >
+            </a>
+
+            
+                <table border="1">
+                    <caption>Top Traded Stocks This Month</caption>
+
+                    <thead>
+                        <tr>
+                            <th>Stock</th>
+                            <th>Sector</th>
+                            <th>Shares Traded</th>
+                            <th>Total Value ($)</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td rowspan="2">TechCorp Inc.</td>
+                            <td>Technology</td>
+                            <td>10,000</td>
+                            <td>1,500,000</td>
+                        </tr>
+                        <tr>
+                            <td>Special Offering</td>
+                            <td>2,000</td>
+                            <td>300,000</td>
+                        </tr>
+                        <tr>
+                            <td>HealthPlus</td>
+                            <td>Healthcare</td>
+                            <td>8,000</td>
+                            <td>800,000</td>
+                        </tr>
+                        <tr>
+                            <td>GreenEnergy</td>
+                            <td>Energy</td>
+                            <td>5,000</td>
+                            <td>500,000</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Total</td>
+                            <td>25,000</td>
+                            <td>3,100,000</td>
+                        </tr>
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">Data accurate as of March 2026</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                
+                <details>
+                    <summary>New User Bonus Offer</summary>
+                    <p>Deposit at least $500 this month and get a $50 trading bonus. Available only for new users.</p>
+                </details>
+
+                <details>
+                    <summary>Zero Commission on ETF Trades</summary>
+                    <p>All ETF trades are commission-free until the end of this quarter. Take advantage of this to diversify your portfolio.</p>
+                </details>
+
+                <details>
+                    <summary>How to set up automated trading?</summary>
+                    <p>You can set up automated trading strategies via our platform dashboard. Choose your preferred parameters and activate your bot.</p>
+                </details>
         </section>
+
     </main>
     <footer>
+        <section id="contacts">
+                <h2>Contact Information</h2>
+
+                <p>Phone: 
+                    <a href="tel:+40757480815">+40757480815</a>
+                </p>
+
+                <p>Address:</p>
+                <a href="https://maps.app.goo.gl/e8SKK86uQPeAhxJm6" target="_blank">
+                    Strada Acaemiei 14<br>
+                    Sector 1<br>
+                    Bucharest, Romania
+                </a>
+
+                <p>Email: 
+                    <a href="mailto:2005dawut55@gmail.com">2005dawut55@gmail.com</a>
+                </p>
+
+                <p>WhatsApp Chat: 
+                    <a href="https://wa.me/0757480815" target="_blank">Chat with us on Whatsapp</a>
+                </p>
+        </section>
+
+        <small>
+            &copy; 2026 Davidious Corporation. Page created on 
+            <time datetime="2026-03-06">March 6, 2026</time>.
+        </small>
         <p>
             <a href="#top">Back to top</a>
         </p>        
