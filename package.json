@@ -1,0 +1,33 @@
+{
+  "name": "stock-trading-app",
+  "version": "1.0.0",
+  "description": "cofetarie online",
+  "keywords": [
+    "cofetarie",
+    "prajituri",
+    "produse de patiserie",
+    "torturi",
+    "deserturi",
+    "dulciuri"
+  ],
+  "homepage": "https://github.com/Davut2005/Fullstack_Stock_Trading_App#readme",
+  "bugs": {
+    "url": "https://github.com/Davut2005/Fullstack_Stock_Trading_App/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Davut2005/Fullstack_Stock_Trading_App.git"
+  },
+  "license": "ISC",
+  "author": "Irina Ciocan",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}
