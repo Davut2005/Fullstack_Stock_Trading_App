@@ -1,61 +1,166 @@
+:root {
+
+  --page-padding: 40px;
+
+
+  --grid-gap: 24px;
+
+
+  --content-padding: 16px;
+
+
+  --header-bg: #0f172a;
+  --main-bg: #f1f5f9;
+  --footer-bg: #1e293b;
+  --section-bg: #ffffff;
+
+
+  --border-radius: 12px;
+  --shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+
+@media (max-width: 1024px) {
+  :root {
+    --page-padding: 24px;
+    --grid-gap: 16px;
+  }
+}
+
+
+@media (max-width: 640px) {
+  :root {
+    --page-padding: 12px;
+    --grid-gap: 8px;
+  }
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-    --culor-fundal: rgba(175, 210, 238, 0.767) ;
-    background-color: var(--culor-fundal);
+  margin: 0;
+  padding-left: var(--page-padding);
+  padding-right: var(--page-padding);
+  font-family: Arial, sans-serif;
+  background: var(--main-bg);
+  line-height: 1.6;
 }
 
-p {
-    border: 1px solid blueviolet;
-}
-
-
-
-#grid-pagina > * {
-    border: 1 px rgb(64, 63, 63);
-    box-shadow: 0px 0px 5px rgb(64, 63, 63) ;
-    padding: 10px;
-}
-
-#grid-pagina {
-    display: grid;
-    grid-template-columns: 2fr 1fr 2fr;
-    grid-template-areas:"welcome welcome welcome"
-                        "promotii promotii anunturi"
-                        "fig1 orar orar"
-                        "fig2 orar orar"
-                        "fig3 orar orar"
-                        "produse produse produse"
-                        "index-intrebari index-intrebari index-intrebari";
-}
-
-figure { /* Resetare spatiere */
-    margin: 0;
-}
-
-figure > img {
-    width: 100%;
+main {
+    background: #ac8968;
 }
 
 
-.ballet {
-  font-family: "Ballet", cursive;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+header {
+  background: var(--header-bg);
+  color: white;
+  padding: var(--content-padding);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
 }
- 
- 
-#fig1{
-    grid-area: fig1;
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: var(--grid-gap);
 }
-#fig2{
-    grid-area: fig2;
+
+nav ul li {
+  position: relative;
 }
-#fig3{
-    grid-area: fig3;
+
+nav ul ul {
+  display: none;
+  position: absolute;
+  background: white;
+  color: black;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
 }
-#produse{
-    grid-area: produse;
+
+nav ul li:hover ul {
+  display: block;
 }
-#index-intrebari{
-    grid-area: index-intrebari;
+
+
+main > section {
+  display: grid;
+  gap: var(--grid-gap);
+  margin-top: 20px;
+}
+
+
+section {
+/*  background: var(--section-bg); */
+  padding: var(--content-padding);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  border: 1px solid #e2e8f0;
+}
+
+
+#learn {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+
+img, video, iframe {
+  width: 100%;
+  max-width: 700px;
+  min-width: 200px;
+  height: auto;
+  display: block;
+  margin-top: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: var(--content-padding);
+  text-align: left;
+  border: 1px solid #cbd5e1;
+}
+
+caption {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+
+details {
+  margin-top: 10px;
+  padding: var(--content-padding);
+  border-radius: var(--border-radius);
+  background: #e2e8f0;
+}
+
+
+footer {
+  background: var(--footer-bg);
+  color: white;
+  padding: var(--content-padding);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-top: 20px;
+}
+
+footer section {
+  background: transparent; /* or inherit */
+  border: none;
+  box-shadow: none;
+}
+
+footer a {
+  color: #93c5fd;
 }
