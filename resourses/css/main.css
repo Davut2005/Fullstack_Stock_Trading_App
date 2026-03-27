@@ -1,23 +1,74 @@
 :root {
 
-  --page-padding: 40px;
-
-
-  --grid-gap: 24px;
-
-
+  /* ── Layout ── */
+  --page-padding:    40px;
+  --grid-gap:        24px;
   --content-padding: 16px;
+  --border-radius:   12px;
+  --shadow:          0 4px 12px rgba(0,0,0,0.08);
 
+  /* ── Colour palette ── */
+  --primary:      #2563EB;
+  --bg-main:      #0F172A;
+  --bg-section:   #111827;
+  --text-main:    #E5E7EB;
+  --border:       #1F2937;
 
-  --primary: #2563EB;
-  --bg-main: #0F172A;
-  --bg-section: #111827;
-  --text-main: #E5E7EB;
-  --border: #1F2937;
+  /* Derived / semantic colours */
+  --color-muted:      #6B7280;  /* subdued text                 */
+  --color-accent:     #93c5fd;  /* highlight / accent           */
+  --color-link:       #60a5fa;  /* anchor default               */
+  --color-link-hover: #93c5fd;  /* anchor hover                 */
+  --color-strong:     #F1F5F9;  /* bold text                    */
+  --color-em:         #FBBF24;  /* italic / emphasis text       */
+  --color-mark:       rgba(37, 99, 235, 0.28); /* highlighted text */
 
+  /* ── Typography scale  (rem — relative to html base px) ── */
+  --fs-xs:   0.75rem;   /*  ~12 px */
+  --fs-sm:   0.875rem;  /*  ~14 px */
+  --fs-base: 1rem;      /*  ~16 px */
+  --fs-md:   1.125rem;  /*  ~18 px */
+  --fs-lg:   1.375rem;  /*  ~22 px */
+  --fs-xl:   1.625rem;  /*  ~26 px */
+  --fs-2xl:  2rem;      /*  ~32 px */
+  --fs-3xl:  2.5rem;    /*  ~40 px */
 
-  --border-radius: 12px;
-  --shadow: 0 4px 12px rgba(0,0,0,0.08);
+  /* Heading sizes — derived from the scale so one edit moves all */
+  --fs-h1: var(--fs-3xl);
+  --fs-h2: var(--fs-2xl);
+  --fs-h3: var(--fs-xl);
+  --fs-h4: var(--fs-lg);
+  --fs-h5: var(--fs-md);
+  --fs-h6: var(--fs-base);
+
+  /* ── Spacing scale  (rem) ── */
+  --sp-1: 0.25rem;   /*  ~4 px  */
+  --sp-2: 0.5rem;    /*  ~8 px  */
+  --sp-3: 0.75rem;   /* ~12 px  */
+  --sp-4: 1rem;      /* ~16 px  */
+  --sp-5: 1.5rem;    /* ~24 px  */
+  --sp-6: 2rem;      /* ~32 px  */
+  --sp-8: 3rem;      /* ~48 px  */
+
+  /* ── Line-heights ── */
+  --lh-tight:  1.2;
+  --lh-normal: 1.6;
+  --lh-loose:  1.8;
+
+  /* ── Font-weights ── */
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-bold:   700;
+
+  /* ── Lists ── */
+  --list-indent:  1.5rem;
+  --bullet-char:  '▸ ';
+  --bullet-color: var(--primary);
+
+  /* ── Table ── */
+  --table-border:   var(--border);
+  --table-head-bg:  #1e3a5f;
+  --table-th-color: #e0f0ff;
 }
 
 
@@ -37,9 +88,6 @@
 }
 
 
-* {
-  box-sizing: border-box;
-}
 
 body {
   margin: 0;
@@ -84,7 +132,7 @@ nav ul ul {
   position: absolute;
   background: var(--bg-section);
   color: var(--text-main);
-  padding: 10px;
+  padding: var(--sp-3);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
 }
@@ -97,7 +145,7 @@ nav ul li:hover ul {
 main > section {
   display: grid;
   gap: var(--grid-gap);
-  margin-top: 20px;
+  margin-top: var(--sp-5);
 }
 
 
@@ -112,40 +160,40 @@ section {
 
 #learn {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
 }
 
 
 img, video, iframe {
   width: 100%;
-  max-width: 700px;
-  min-width: 200px;
+  max-width: 43.75rem;   /* 700 ÷ 16 */
+  min-width: 12.5rem;    /* 200 ÷ 16 */
   height: auto;
   display: block;
-  margin-top: 10px;
+  margin-top: var(--sp-3);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: var(--sp-5);
 }
 
 th, td {
-  padding: var(--content-padding);
+  padding: var(--sp-3) var(--sp-4);
   text-align: left;
   border: 1px solid var(--border);
 }
 
 caption {
-  margin-bottom: 10px;
-  font-weight: bold;
+  margin-bottom: var(--sp-3);
+  font-weight: var(--fw-bold);
 }
 
 
 details {
-  margin-top: 10px;
-  padding: var(--content-padding);
+  margin-top: var(--sp-3);
+  padding: var(--sp-4);
   border-radius: var(--border-radius);
   border: 1px solid var(--border);
   background: var(--bg-section);
@@ -153,10 +201,10 @@ details {
 
 
 footer {
-  padding: var(--content-padding);
+  padding: var(--sp-4);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  margin-top: 20px;
+  margin-top: var(--sp-5);
 }
 
 footer section {
@@ -170,9 +218,6 @@ footer a {
 }
 
 
-/* ════════════════════════════════════════════════
-   RESPONSIVE GRID LAYOUT  —  layout-responsive
-   ════════════════════════════════════════════════ */
 
 /* Base font size (large screens) with smooth transition */
 html {
@@ -184,7 +229,7 @@ html {
 .main-grid {
   display: grid;
   gap: var(--grid-gap);
-  margin-top: 20px;
+  margin-top: var(--sp-5);
   /* 4-column base: lets rows 2 and 4 share different ratios */
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-areas:
@@ -423,8 +468,11 @@ html {
 
 .tutorial-links {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;   /* align buttons to the right */
   gap: 0.5rem;
+  margin-top: 0.4rem;
 }
 
 .tut-link {
@@ -476,9 +524,6 @@ html {
 }
 
 
-/* ════════════════════════════════════════════════
-   MEDIUM SCREEN  —  ≤ 1024 px
-   ════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
   html {
     font-size: 15px;
@@ -510,9 +555,6 @@ html {
 }
 
 
-/* ════════════════════════════════════════════════
-   SMALL SCREEN  —  ≤ 640 px
-   ════════════════════════════════════════════════ */
 @media (max-width: 640px) {
   html {
     font-size: 13px;
@@ -556,18 +598,20 @@ html {
     min-width: unset;
   }
 
-  /* Disable CSS animations on small screens */
+  /* Disable ALL transitions and @keyframes animations on small screens */
   *, *::before, *::after {
-    animation-duration: 0s !important;
-    animation-delay: 0s !important;
-    animation-iteration-count: 1 !important;
+    transition:                none !important;
+    animation-duration:        0s   !important;
+    animation-delay:           0s   !important;
+    animation-iteration-count: 1    !important;
+  }
+
+  html {
+    transition: font-size 0.4s ease !important;
   }
 }
 
 
-/* ════════════════════════════════════════════════
-   STILIZARE-TABEL
-   ════════════════════════════════════════════════ */
 
 /* Caption repositioned BELOW the table */
 caption {
@@ -600,27 +644,27 @@ caption {
 .zone2 table {
   margin-top: 0;
   width: 100%;
-  min-width: 500px;    /* below this width the inner scroll kicks in */
+  min-width: 31.25rem;  /* 500 ÷ 16 — below this width the inner scroll kicks in */
   border-collapse: collapse;
   border: none;        /* border is handled by .table-wrap outer ring */
 }
 
-/* ── Alternating COLUMN backgrounds ── */
-/* Odd columns  (1st, 3rd …): slightly lighter dark navy */
+
+
 .zone2 thead th:nth-child(odd),
 .zone2 tbody  td:nth-child(odd),
 .zone2 tfoot  td:nth-child(odd) {
   background-color: #12233a;
 }
 
-/* Even columns (2nd, 4th …): deeper dark navy */
+
 .zone2 thead th:nth-child(even),
 .zone2 tbody  td:nth-child(even),
 .zone2 tfoot  td:nth-child(even) {
   background-color: #0e1b2d;
 }
 
-/* ── Header row: override alternating with a clear accent ── */
+
 .zone2 thead th {
   background-color: #1e3a5f;
   color: #e0f0ff;
@@ -630,12 +674,12 @@ caption {
   white-space: nowrap;
 }
 
-/* Slight shade variation even in header to echo the column rhythm */
+
 .zone2 thead th:nth-child(even) {
   background-color: #172d4e;
 }
 
-/* ── Footer row ── */
+
 .zone2 tfoot td {
   background-color: #0a1828;
   color: #6b7280;
@@ -644,33 +688,24 @@ caption {
   border-top: 2px solid var(--border);
 }
 
-/* ── Transition on every tbody cell (enables smooth row/cell hover) ── */
+
 .zone2 tbody td {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ── Row hover: entire row shifts to a blue-navy highlight ── */
+
 .zone2 tbody tr:hover > td {
   background-color: #1a3a5c;
 }
 
-/* ── Cell hover: the exact cell under cursor gets a distinct accent ── */
-/* (different colour from the row hover above, as required) */
+
 .zone2 tbody tr:hover > td:hover {
   background-color: var(--primary);
   color: #ffffff;
 }
 
 
-/* ════════════════════════════════════════════════
-   TUTORIAL LINK — gradient text, white on hover
-   ════════════════════════════════════════════════ */
 
-/*
-  The .tut-link <a> keeps its button box background.
-  The inner .tut-text <span> holds the gradient text so
-  background-clip: text does not eat the button's background.
-*/
 .tut-text {
   /* Radial gradient: bright/near-white at center → medium blue → deep blue at edges */
   background-image: radial-gradient(
@@ -701,17 +736,13 @@ caption {
 }
 
 
-/* ════════════════════════════════════════════════
-   BACK-TO-TOP BUTTON
-   ════════════════════════════════════════════════ */
-
 /* ── Outer container: fixed, semi-transparent ── */
 .back-to-top {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 58px;
-  height: 58px;
+  width:  3.625rem;   /* 58px ÷ 16 */
+  height: 3.625rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -765,11 +796,7 @@ caption {
     #050c1a 100%
   );
 
-  /*
-    Border made of 4 distinct parts:
-      top / bottom → very dark (near black)
-      left / right → primary blue (lighter)
-  */
+
   border-top:    3px solid #020710;
   border-bottom: 3px solid #020710;
   border-left:   3px solid #2563eb;
@@ -792,18 +819,18 @@ caption {
 /* ── Arrow — sibling of ring, never rotates ── */
 .btt-arrow {
   position: relative;
-  z-index: 1;               /* sits above the ring */
+  z-index: 1;              
   font-size: 1.45rem;
   line-height: 1;
   color: #93c5fd;
   user-select: none;
 
-  /* Blurred by default */
+
   filter: blur(1.8px);
   transition: filter 0.35s ease, color 0.35s ease;
 }
 
-/* On hover: blur removed → arrow looks sharp and bold */
+
 .back-to-top:hover .btt-arrow {
   filter: blur(0);
   color: #e0f2fe;

@@ -1,0 +1,172 @@
+/* ════════════════════════════════════════════════
+   CSS RESET  —  spacing · typography · colours · lists · tables
+   ════════════════════════════════════════════════ */
+
+/* ── Universal box model + hard-zero of browser defaults ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin:  0;
+  padding: 0;
+}
+
+/* ── Headings  (font-size from --fs-h* variables; all relative) ── */
+h1, h2, h3, h4, h5, h6 {
+  font-weight:     var(--fw-bold);
+  line-height:     var(--lh-tight);
+  color:           var(--color-strong);
+  margin-block-end: var(--sp-3);
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+h5 { font-size: var(--fs-h5); }
+h6 { font-size: var(--fs-h6); }
+
+/* ── Paragraphs ── */
+p {
+  font-size:        var(--fs-base);
+  line-height:      var(--lh-normal);
+  margin-block-end: var(--sp-4);
+}
+
+/* ── Bold / strong  redefinition ── */
+b, strong {
+  font-weight: var(--fw-bold);
+  color:       var(--color-strong);
+}
+
+/* ── Italic / emphasis  redefinition ── */
+em, i {
+  font-style: italic;
+  color:      var(--color-em);
+}
+
+/* ── Links ── */
+a {
+  color:                  var(--color-link);
+  text-decoration:        underline;
+  text-underline-offset:  0.2em;
+  transition:             color 0.2s ease;
+}
+a:hover {
+  color:           var(--color-link-hover);
+  text-decoration: none;
+}
+
+/* ── Lists — bullets & indices ──
+   All list dimensions in relative units (rem / em).
+   Custom bullet ▸ is coloured via --bullet-color.           */
+ul, ol {
+  padding-inline-start: var(--list-indent);
+  margin-block-end:     var(--sp-4);
+}
+li {
+  margin-block-end: var(--sp-2);
+  line-height:      var(--lh-normal);
+}
+
+/* Unordered: remove UA bullets, inject custom ones via ::before */
+ul { list-style: none; }
+ul > li::marker { content: ''; }   /* belt-and-suspenders clear    */
+ul > li {
+  position:             relative;
+  padding-inline-start: var(--sp-3);
+}
+ul > li::before {
+  content:  var(--bullet-char);     /* ▸ — defined in :root         */
+  color:    var(--bullet-color);
+  position: absolute;
+  left:     0;
+  top:      0.05em;                 /* fine optical alignment        */
+}
+
+/* Ordered: keep numbers, recolour the marker */
+ol { list-style: decimal; }
+ol > li::marker {
+  color:       var(--bullet-color);
+  font-weight: var(--fw-bold);
+}
+
+/* Description list */
+dl  { margin-block-end: var(--sp-4); }
+dt  {
+  font-weight:      var(--fw-bold);
+  color:            var(--color-strong);
+  margin-block-end: var(--sp-1);
+}
+dd  {
+  margin-inline-start: var(--list-indent);
+  margin-block-end:    var(--sp-3);
+  color:               var(--color-muted);
+}
+
+/* Remove custom bullets where they are unwanted:
+   - nav menus live in <header>, outside .zone, but add this for safety
+   - lists with their own visual markers (user-list uses ● in HTML)    */
+nav  ul > li               { padding-inline-start: 0; }
+nav  ul > li::before       { content: none; }
+.user-list > li            { padding-inline-start: 0; }
+.user-list > li::before    { content: none; }
+
+/* ── Tables ── */
+table {
+  width:           100%;
+  border-collapse: collapse;
+}
+th {
+  font-weight:      var(--fw-bold);
+  font-size:        var(--fs-sm);
+  text-align:       left;
+  padding:          var(--sp-3) var(--sp-4);
+  background-color: var(--table-head-bg);
+  color:            var(--table-th-color);
+  border:           1px solid var(--table-border);
+}
+td {
+  font-size:      var(--fs-sm);
+  padding:        var(--sp-3) var(--sp-4);
+  border:         1px solid var(--table-border);
+  vertical-align: top;
+}
+caption {
+  font-size: var(--fs-xs);
+  color:     var(--color-muted);
+  padding:   var(--sp-2) 0;
+}
+
+/* ── Inline text elements ── */
+small, sub, sup { font-size: var(--fs-xs); }
+abbr[title] {
+  text-decoration:       underline dotted;
+  text-underline-offset: 0.2em;
+  cursor: help;
+}
+mark {
+  background-color: var(--color-mark);
+  color:            var(--color-strong);
+  padding:          0 0.2em;
+  border-radius:    0.15em;
+}
+
+/* ── Media ── */
+img, video {
+  max-width: 100%;
+  height:    auto;
+  display:   block;
+}
+
+/* ── Meter ── */
+meter {
+  width:  100%;
+  height: 0.75rem;
+}
+
+/* ── Blockquote ── */
+blockquote {
+  border-inline-start:  0.25rem solid var(--primary);
+  padding-inline-start: var(--sp-4);
+  margin-block:         var(--sp-4);
+  color:                var(--color-muted);
+  font-style:           italic;
+}
