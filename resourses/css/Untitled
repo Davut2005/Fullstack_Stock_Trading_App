@@ -1,6 +1,0 @@
-  /* ── Layout ── */
-  --page-padding:    40px;
-  --grid-gap:        24px;
-  --content-padding: 16px;
-  --border-radius:   12px;
-  --shadow:          0 4px 12px rgba(0,0,0,0.08);
