@@ -1,0 +1,123 @@
+body {
+  --nav-link-color: var(--color-accent);
+  --nav-link-hover-color: var(--color-accent);
+  --nav-bg: var(--bg-section);
+  --nav-border: var(--border);
+  --nav-text: var(--text-main);
+  --nav-line-1: var(--color-accent);
+  --nav-line-2: var(--primary);
+  --nav-icon-color: var(--color-accent);
+}
+
+nav > ul > li > ul {
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease, visibility 0s linear 0.28s;
+}
+
+nav > ul > li:hover > ul {
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease, visibility 0s linear 0s;
+}
+
+nav > ul > li > ul {
+  visibility: hidden;
+  opacity: 0;
+}
+
+nav > ul > li:hover > ul {
+  visibility: visible;
+  opacity: 1;
+}
+
+nav > ul > li > ul li a, nav > ul > li > a {
+  display: block;
+  text-decoration: none;
+  border-radius: 0.25rem;
+}
+
+nav > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--grid-gap);
+}
+nav > ul li {
+  position: relative;
+}
+nav > ul > li > a {
+  position: relative;
+  padding: var(--sp-2) var(--sp-3);
+  color: var(--nav-link-color);
+  font-weight: var(--fw-medium);
+}
+nav > ul > li > a i {
+  font-size: 0.85em;
+  width: 1.1em;
+  text-align: center;
+  color: var(--nav-icon-color);
+}
+nav > ul > li > a .nav-arrow {
+  font-size: 0.65em;
+  margin-left: 0.25em;
+  vertical-align: middle;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+nav > ul > li > a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0.25rem;
+  background: rgba(37, 99, 235, 0.18);
+  border: 1px solid rgba(147, 197, 253, 0.55);
+  box-shadow: inset 0 0 14px rgba(37, 99, 235, 0.4), inset 0 0 4px rgba(147, 197, 253, 0.3);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+nav > ul > li > a:hover::before {
+  transform: scaleY(1);
+}
+nav > ul > li:hover > a .nav-arrow {
+  transform: rotate(180deg);
+}
+nav > ul > li > ul {
+  display: block;
+  position: absolute;
+  top: calc(100% + var(--sp-1));
+  left: 0;
+  min-width: 10rem;
+  background: var(--nav-bg);
+  padding: var(--sp-2);
+  border-radius: 0.75rem;
+  border: 1px solid var(--nav-border);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.45);
+  z-index: 200;
+  transform: scale(0);
+  transform-origin: top left;
+}
+nav > ul > li > ul li a {
+  padding: var(--sp-2) var(--sp-3);
+  color: var(--nav-text);
+  white-space: nowrap;
+}
+nav > ul > li > ul li a i {
+  font-size: 0.85em;
+  width: 1.1em;
+  text-align: center;
+  color: var(--nav-icon-color);
+}
+nav > ul > li > ul li a {
+  background-image: linear-gradient(var(--nav-line-1), var(--nav-line-1)), linear-gradient(var(--nav-line-2), var(--nav-line-2));
+  background-size: 0 2px, 0 2px;
+  background-position: 0 calc(100% - 0px), 0 calc(100% - 5px);
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease, color 0.2s ease;
+}
+nav > ul > li > ul li a:hover {
+  color: var(--nav-link-hover-color);
+  background-size: 100% 2px, 100% 2px;
+}
+nav > ul > li:hover > ul {
+  transform: scale(1);
+}

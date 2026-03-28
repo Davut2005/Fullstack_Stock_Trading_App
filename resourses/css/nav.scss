@@ -1,0 +1,249 @@
+
+
+@use 'sass:list';
+
+
+// ── SASS variables (compile-time constants) ───────────
+$nav-radius:          0.25rem;
+$nav-submenu-radius:  0.75rem;
+$nav-transition-dur:  0.28s;
+$nav-transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+$overlay-bg:          rgba(37, 99, 235, 0.18);
+$overlay-border:      rgba(147, 197, 253, 0.55);
+$overlay-shadow-1:    rgba(37, 99, 235, 0.40);
+$overlay-shadow-2:    rgba(147, 197, 253, 0.30);
+$submenu-shadow:      rgba(0, 0, 0, 0.45);
+
+// Underline config — drives the @for loop
+$underline-count:     2;       // number of lines in the double underline
+$underline-thickness: 2px;     // height of each line
+$underline-gap:       5px;     // vertical gap between the two lines
+
+
+// ── CSS variables declared on body ───────────────────
+//    Theme-dependent: swap these values to restyle the
+//    whole menu without touching component rules.
+body {
+  --nav-link-color:       var(--color-accent);
+  --nav-link-hover-color: var(--color-accent);
+  --nav-bg:               var(--bg-section);
+  --nav-border:           var(--border);
+  --nav-text:             var(--text-main);
+  --nav-line-1:           var(--color-accent);   // first underline colour
+  --nav-line-2:           var(--primary);         // second underline colour
+  --nav-icon-color:       var(--color-accent);
+}
+
+
+// ── Reusable placeholder selectors (@extend targets) ─
+
+// Shared "hidden → visible" transition (closing delay trick)
+%transition-scale {
+  transition:
+    transform  $nav-transition-dur $nav-transition-ease,
+    opacity    $nav-transition-dur ease,
+    visibility 0s linear $nav-transition-dur;   // delay visibility on close
+}
+
+%transition-scale-open {
+  transition:
+    transform  $nav-transition-dur $nav-transition-ease,
+    opacity    $nav-transition-dur ease,
+    visibility 0s linear 0s;                    // instant visibility on open
+}
+
+%hidden {
+  visibility: hidden;
+  opacity:    0;
+}
+
+%visible {
+  visibility: visible;
+  opacity:    1;
+}
+
+%link-reset {
+  display:         block;
+  text-decoration: none;
+  border-radius:   $nav-radius;
+}
+
+
+// ════════════════════════════════════════════════════════
+//  NAV — fully nested structure
+// ════════════════════════════════════════════════════════
+nav {
+
+  // ── Top-level list ───────────────────────────────────
+  > ul {
+    list-style:  none;
+    padding:     0;
+    margin:      0;
+    display:     flex;
+    flex-wrap:   wrap;
+    align-items: center;
+    gap:         var(--grid-gap);
+
+    li { position: relative; }
+
+    // ── Top-level items ─────────────────────────────
+    > li {
+
+      > a {
+        @extend %link-reset;
+        position:    relative;   // stacking context for ::before overlay
+        padding:     var(--sp-2) var(--sp-3);
+        color:       var(--nav-link-color);
+        font-weight: var(--fw-medium);
+
+        // Icons inside nav links
+        i {
+          font-size:  0.85em;
+          width:      1.1em;
+          text-align: center;
+          color:      var(--nav-icon-color);
+        }
+
+        // Chevron arrow
+        .nav-arrow {
+          font-size:      0.65em;
+          margin-left:    0.25em;
+          vertical-align: middle;
+          transition:     transform $nav-transition-dur $nav-transition-ease;
+        }
+
+        // ── Hover overlay (::before) ───────────────
+        //    scaleY(0) → scaleY(1); border + inset
+        //    shadow create the gradient-glow on border.
+        &::before {
+          content:          '';
+          position:         absolute;
+          inset:            0;
+          border-radius:    $nav-radius;
+          background:       $overlay-bg;
+          border:           1px solid $overlay-border;
+          box-shadow:
+            inset 0 0 14px $overlay-shadow-1,
+            inset 0 0  4px $overlay-shadow-2;
+          transform:        scaleY(0);
+          transform-origin: center;
+          transition:       transform 0.3s $nav-transition-ease;
+        }
+
+        &:hover::before { transform: scaleY(1); }
+      }
+
+      // Rotate chevron when submenu is open
+      &:hover > a .nav-arrow { transform: rotate(180deg); }
+
+      // ── Dropdown submenu ──────────────────────────
+      //    Scales from top-left corner on both axes.
+      > ul {
+        @extend %transition-scale;
+        @extend %hidden;
+
+        display:          block;
+        position:         absolute;
+        top:              calc(100% + var(--sp-1));
+        left:             0;
+        min-width:        10rem;
+        background:       var(--nav-bg);
+        padding:          var(--sp-2);
+        border-radius:    $nav-submenu-radius;
+        border:           1px solid var(--nav-border);
+        box-shadow:       0 0.5rem 1.5rem $submenu-shadow;
+        z-index:          200;
+        transform:        scale(0);
+        transform-origin: top left;
+
+        // ── Submenu links ──────────────────────────
+        li a {
+          @extend %link-reset;
+          padding:     var(--sp-2) var(--sp-3);
+          color:       var(--nav-text);
+          white-space: nowrap;
+
+          i {
+            font-size:  0.85em;
+            width:      1.1em;
+            text-align: center;
+            color:      var(--nav-icon-color);
+          }
+
+          // ── Double underline built by @for loop ───
+          //    For each line index $i (1 … $underline-count):
+          //      • pick colour variable (line 1 vs line 2)
+          //      • set initial size to 0 width
+          //      • position at bottom (line 1) or above (line 2)
+          //    Results are collected with list.append() into
+          //    three separate lists and applied as multi-layer
+          //    background-image / background-size / background-position.
+          $images:    ();
+          $sizes:     ();
+          $positions: ();
+
+          @for $i from 1 through $underline-count {
+            // Colour: line 1 uses --nav-line-1, others use --nav-line-2
+            $color-var: '';
+            @if $i == 1 {
+              $color-var: 'var(--nav-line-1)';
+            } @else {
+              $color-var: 'var(--nav-line-2)';
+            }
+
+            $images: list.append(
+              $images,
+              linear-gradient(#{$color-var}, #{$color-var}),
+              comma
+            );
+
+            $sizes: list.append(
+              $sizes,
+              0 $underline-thickness,
+              comma
+            );
+
+            // Position: line 1 sits at the very bottom;
+            // each subsequent line is $underline-gap higher.
+            $gap-offset: ($i - 1) * $underline-gap;
+            @if $gap-offset == 0 {
+              $positions: list.append($positions, 0 100%,                              comma);
+            } @else {
+              $positions: list.append($positions, 0 calc(100% - #{$gap-offset}),       comma);
+            }
+          }
+
+          background-image:    $images;
+          background-size:     $sizes;
+          background-position: $positions;
+          background-repeat:   no-repeat;
+          transition:          background-size 0.3s ease, color 0.2s ease;
+
+          // Hover: expand all lines to full width
+          &:hover {
+            color: var(--nav-link-hover-color);
+
+            $hover-sizes: ();
+            @for $i from 1 through $underline-count {
+              $hover-sizes: list.append(
+                $hover-sizes,
+                100% $underline-thickness,
+                comma
+              );
+            }
+            background-size: $hover-sizes;
+          }
+        }
+      }
+
+      // Open state on parent li hover
+      &:hover > ul {
+        @extend %transition-scale-open;
+        @extend %visible;
+        transform: scale(1);
+      }
+
+    } // > li
+  } // > ul
+} // nav

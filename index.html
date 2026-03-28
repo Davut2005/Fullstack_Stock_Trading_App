@@ -22,7 +22,8 @@
     <title>Davidious Stock Trading Platform</title>
 
     <link rel="stylesheet" href="./resourses/css/reset.css" type="text/css" />
-    <link rel="stylesheet" href="./resourses/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="./resourses/css/nav.css"   type="text/css" />
+    <link rel="stylesheet" href="./resourses/css/main.css"  type="text/css" />
 </head>
 <body>
     <header id="top">
@@ -30,18 +31,48 @@
 
         <nav>
             <ul>
+
+                <!--
+                  SUBMENU 2 — links to sections of the current page (Home).
+                  The option name is the page name: "Home".
+                -->
                 <li>
-                    <a href="index.html">Home</a>
-                        <ul>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#stocks">Stocks</a></li>
-                            <li><a href="#learn">Learn</a></li>
-                        </ul>
+                    <a href="index.html">
+                        <i class="fa-solid fa-house"></i> Home
+                        <i class="fa-solid fa-chevron-down nav-arrow"></i>
+                    </a>
+                    <ul>
+                        <li><a href="#about"><i class="fa-solid fa-circle-info"></i> About</a></li>
+                        <li><a href="#stocks"><i class="fa-solid fa-chart-line"></i> Top Stocks</a></li>
+                        <li><a href="#learn"><i class="fa-solid fa-graduation-cap"></i> Learn</a></li>
+                        <li><a href="#events"><i class="fa-solid fa-calendar-days"></i> Events</a></li>
+                        <li><a href="#contacts"><i class="fa-solid fa-envelope"></i> Contacts</a></li>
+                    </ul>
                 </li>
-                <li><a href="#profile">Stocks</a></li>
-                <li><a href="#Why_Davidious">Why Davidious</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#contacts">Contacts</a></li>
+
+                <!--
+                  SUBMENU 1 — links to other pages of the site (not yet created),
+                  grouped under the descriptive name "Trading Tools".
+                -->
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-briefcase"></i> Trading Tools
+                        <i class="fa-solid fa-chevron-down nav-arrow"></i>
+                    </a>
+                    <ul>
+                        <li><a href="analysis.html"><i class="fa-solid fa-magnifying-glass-chart"></i> Market Analysis</a></li>
+                        <li><a href="portfolio.html"><i class="fa-solid fa-wallet"></i> Portfolio Manager</a></li>
+                        <li><a href="history.html"><i class="fa-solid fa-clock-rotate-left"></i> Trade History</a></li>
+                        <li><a href="trading.html"><i class="fa-solid fa-bolt"></i> Live Trading</a></li>
+                        <li><a href="alerts.html"><i class="fa-solid fa-bell"></i> Price Alerts</a></li>
+                    </ul>
+                </li>
+
+                <!-- Direct links with representative icons -->
+                <li><a href="#Why_Davidious"><i class="fa-solid fa-shield-halved"></i> Why Davidious</a></li>
+                <li><a href="#events"><i class="fa-solid fa-calendar-days"></i> Events</a></li>
+                <li><a href="#contacts"><i class="fa-solid fa-phone"></i> Contacts</a></li>
+
             </ul>
         </nav>
     </header>
