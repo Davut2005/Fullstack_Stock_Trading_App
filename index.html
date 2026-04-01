@@ -27,20 +27,26 @@
 </head>
 <body>
     <header id="top">
+        <input type="checkbox" id="nav-check" class="nav-check">
+        <label for="nav-check" class="nav-toggle" aria-label="Toggle menu">
+            <i class="fa-solid fa-bars nav-icon-open"></i>
+            <i class="fa-solid fa-xmark nav-icon-close"></i>
+        </label>
+
         <h1>Davidious Stock Trading Platform</h1>
 
         <nav>
             <ul>
 
-                <!--
-                  SUBMENU 2 — links to sections of the current page (Home).
-                  The option name is the page name: "Home".
-                -->
                 <li>
                     <a href="index.html">
-                        <i class="fa-solid fa-house"></i> Home
+                        <i class="fa-solid fa-house"></i><span class="nav-label"> Home</span>
                         <i class="fa-solid fa-chevron-down nav-arrow"></i>
                     </a>
+                    <input type="checkbox" id="sub-home" class="sub-check">
+                    <label for="sub-home" class="sub-toggle-btn" aria-label="Expand Home submenu">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </label>
                     <ul>
                         <li><a href="#about"><i class="fa-solid fa-circle-info"></i> About</a></li>
                         <li><a href="#stocks"><i class="fa-solid fa-chart-line"></i> Top Stocks</a></li>
@@ -50,15 +56,15 @@
                     </ul>
                 </li>
 
-                <!--
-                  SUBMENU 1 — links to other pages of the site (not yet created),
-                  grouped under the descriptive name "Trading Tools".
-                -->
                 <li>
                     <a href="#">
-                        <i class="fa-solid fa-briefcase"></i> Trading Tools
+                        <i class="fa-solid fa-briefcase"></i><span class="nav-label"> Trading Tools</span>
                         <i class="fa-solid fa-chevron-down nav-arrow"></i>
                     </a>
+                    <input type="checkbox" id="sub-tools" class="sub-check">
+                    <label for="sub-tools" class="sub-toggle-btn" aria-label="Expand Trading Tools submenu">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </label>
                     <ul>
                         <li><a href="analysis.html"><i class="fa-solid fa-magnifying-glass-chart"></i> Market Analysis</a></li>
                         <li><a href="portfolio.html"><i class="fa-solid fa-wallet"></i> Portfolio Manager</a></li>
@@ -68,10 +74,9 @@
                     </ul>
                 </li>
 
-                <!-- Direct links with representative icons -->
-                <li><a href="#Why_Davidious"><i class="fa-solid fa-shield-halved"></i> Why Davidious</a></li>
-                <li><a href="#events"><i class="fa-solid fa-calendar-days"></i> Events</a></li>
-                <li><a href="#contacts"><i class="fa-solid fa-phone"></i> Contacts</a></li>
+                <li><a href="#Why_Davidious"><i class="fa-solid fa-shield-halved"></i><span class="nav-label"> Why Davidious</span></a></li>
+                <li><a href="#events"><i class="fa-solid fa-calendar-days"></i><span class="nav-label"> Events</span></a></li>
+                <li><a href="#contacts"><i class="fa-solid fa-phone"></i><span class="nav-label"> Contacts</span></a></li>
 
             </ul>
         </nav>
@@ -80,7 +85,7 @@
     <main>
         <div class="main-grid">
 
-            <!--  ZONE 1: Presentation — F-Pattern  -->
+
             <section class="zone zone1" id="about">
                 <div class="f-bar">
                     <hgroup>
@@ -123,7 +128,7 @@
                 </div>
             </section>
 
-            <!-- ZONE 3: Events Calendar  -->
+
             <section class="zone zone3" id="events">
                 <h3 class="zone-title">Events Calendar</h3>
                 <ul class="event-list">
@@ -139,7 +144,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Sed hendrerit orci vitae purus fermentum, in accumsan justo vehicula.</p>
             </section>
 
-            <!--  ZONE 2: Table  -->
+
             <section class="zone zone2" id="stocks">
                 <h3 class="zone-title">Top Traded Stocks</h3>
                 <div class="table-wrap">
@@ -197,7 +202,7 @@
                 </div>
             </section>
 
-            <!--  ZONE 4: Announcements  -->
+
             <section class="zone zone4" id="announcements">
                 <h3 class="zone-title">Announcements</h3>
 
@@ -219,7 +224,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel nisi et lorem malesuada cursus at vel velit.</p>
             </section>
 
-            <!--  ZONE 8: Additional Content (creative)  -->
+
             <section class="zone zone8" id="learn">
                 <div class="zone8-inner">
 
@@ -281,7 +286,7 @@
                 </div>
             </section>
 
-            <!--  ZONE 7: Platform & Server Data  -->
+
             <section class="zone zone7" id="site-info">
                 <h3 class="zone-title">Platform &amp; Server Status</h3>
                 <ul class="status-list">
@@ -295,7 +300,7 @@
                 <p>Cras convallis dui vitae nulla suscipit, et commodo orci facilisis. Integer id justo sed lorem varius tempus nec in enim.</p>
             </section>
 
-            <!--  ZONE 5: Online Users  -->
+
             <section class="zone zone5" id="online-users">
                 <h3 class="zone-title">
                     Online Users <i class="fas fa-spinner fa-spin"></i>
@@ -312,7 +317,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </section>
 
-            <!--  ZONE 6: User Data & Statistics  -->
+
             <section class="zone zone6" id="profile">
                 <h3 class="zone-title">Your Profile &amp; Stats</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum lorem ut facilisis scelerisque.</p>
@@ -381,10 +386,12 @@
         </small>
     </footer>
 
-    <!--  "back to top" button -->
+
     <a href="#top" class="back-to-top" aria-label="Back to top of page">
         <span class="btt-ring"></span>
         <span class="btt-arrow">&#8593;</span>
     </a>
+
+
 </body>
 </html>

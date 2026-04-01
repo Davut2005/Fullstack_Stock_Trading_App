@@ -70,9 +70,6 @@ body {
 }
 
 
-// ════════════════════════════════════════════════════════
-//  NAV — fully nested structure
-// ════════════════════════════════════════════════════════
 nav {
 
   // ── Top-level list ───────────────────────────────────
@@ -247,3 +244,282 @@ nav {
     } // > li
   } // > ul
 } // nav
+
+
+// ─────────────────────────────────────────────────────────────
+// GLOBAL — checkbox & label helpers
+// ─────────────────────────────────────────────────────────────
+
+// Always hide the actual checkboxes (still functional via <label>)
+.nav-check,
+.sub-check {
+  display:  none;
+  position: absolute;
+}
+
+// Sub-toggle button: hidden everywhere except small screen
+.sub-toggle-btn {
+  display: none;
+}
+
+// Close icon: hidden until hamburger is checked
+.nav-icon-close {
+  display: none;
+}
+
+// Hamburger label: hidden on large / medium screens
+.nav-toggle {
+  display:         none;
+  align-items:     center;
+  justify-content: center;
+  background:      var(--nav-bg);
+  border:          1px solid var(--nav-border);
+  border-radius:   $nav-radius;
+  color:           var(--nav-text);
+  font-size:       1.3rem;
+  width:           2.6rem;
+  height:          2.6rem;
+  cursor:          pointer;
+  transition:
+    background $nav-transition-dur ease,
+    color      $nav-transition-dur ease;
+
+  &:hover {
+    background:   #{$overlay-bg};
+    color:        var(--nav-link-color);
+    border-color: #{$overlay-border};
+  }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// MEDIUM SCREEN (≤ 1024px) — icon-only top-level links
+// ─────────────────────────────────────────────────────────────
+@media (max-width: 1024px) {
+  nav > ul { gap: var(--sp-2); }
+
+  nav > ul > li > a {
+    padding: var(--sp-2) var(--sp-3);
+    .nav-label { display: none; }
+    .nav-arrow { display: none; }
+    i          { font-size: 1.15rem; }
+  }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// SMALL SCREEN (≤ 640px) — pure-CSS hamburger (checkbox hack)
+// ─────────────────────────────────────────────────────────────
+@media (max-width: 640px) {
+
+  // ── Show hamburger label as fixed button ───────────────────
+  .nav-toggle {
+    display:  flex;
+    position: fixed;
+    top:      var(--sp-3, 0.75rem);
+    left:     var(--sp-3, 0.75rem);
+    z-index:  1001;
+  }
+
+  // ── Swap bars ↔ xmark when checkbox is checked ─────────────
+  #nav-check:checked + .nav-toggle .nav-icon-open  { display: none; }
+  #nav-check:checked + .nav-toggle .nav-icon-close { display: inline; }
+
+  // ── Nav overlay: hidden by default ────────────────────────
+  nav {
+    position:        fixed;
+    inset:           0;
+    background:      rgba(15, 23, 42, 0.97);
+    backdrop-filter: blur(8px);
+    z-index:         1000;
+    display:         flex;
+    flex-direction:  column;
+    align-items:     center;
+    justify-content: flex-start;
+    overflow-y:      auto;
+    padding-top:     5rem;
+    opacity:         0;
+    visibility:      hidden;
+    pointer-events:  none;
+    transition:
+      opacity    0.28s $nav-transition-ease,
+      visibility 0s   linear 0.28s;
+  }
+
+  // ── Open: #nav-check:checked ~ nav ────────────────────────
+  // The input and nav are siblings inside <header>
+  #nav-check:checked ~ nav {
+    opacity:        1;
+    visibility:     visible;
+    pointer-events: auto;
+    transition:     opacity 0.28s $nav-transition-ease;
+  }
+
+  // ── Vertical item list ─────────────────────────────────────
+  nav > ul {
+    flex-direction: column;
+    align-items:    stretch;
+    gap:            var(--sp-2, 0.5rem);
+    width:          min(22rem, 88vw);
+    padding:        0 0 var(--sp-8, 2rem);
+
+    li { position: static; }
+
+    // ── Top-level items ──────────────────────────────────────
+    > li {
+      display:       flex;
+      flex-wrap:     wrap;
+      align-items:   center;
+      border-radius: $nav-submenu-radius;
+
+      // Default: clipped (invisible) until nav opens
+      opacity:   0;
+      clip-path: polygon(0% 0%, 0% 0%, 0% 50%, 0% 100%, 0% 100%);
+
+      // Staggered reveal delays
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{($i - 1) * 0.07}s;
+        }
+      }
+
+      // ── Main link ────────────────────────────────────────
+      > a {
+        display:       flex;
+        align-items:   center;
+        gap:           var(--sp-3, 0.75rem);
+        padding:       var(--sp-4, 1rem) var(--sp-5, 1.25rem);
+        font-size:     1.05rem;
+        color:         var(--nav-text);
+        flex:          1;
+        border-radius: $nav-submenu-radius;
+        transition:    background 0.2s ease;
+
+        &::before { display: none; } // no desktop overlay on mobile
+
+        .nav-label {
+          display: inline;
+          flex:    1;
+        }
+
+        .nav-arrow { display: none; } // sub-toggle-btn handles expand indicator
+
+        i {
+          font-size:  1rem;
+          width:      1.2em;
+          flex-shrink: 0;
+        }
+
+        &:hover { background: rgba(37, 99, 235, 0.15); }
+      }
+
+      // ── Sub-toggle button (chevron label) ─────────────────
+      > .sub-toggle-btn {
+        display:         flex;
+        align-items:     center;
+        justify-content: center;
+        width:           2.8rem;
+        height:          2.8rem;
+        cursor:          pointer;
+        color:           var(--nav-text);
+        flex-shrink:     0;
+        border-radius:   $nav-submenu-radius;
+        transition:      background 0.2s ease;
+
+        i {
+          font-size:  0.75rem;
+          transition: transform $nav-transition-dur $nav-transition-ease;
+        }
+
+        &:hover { background: rgba(37, 99, 235, 0.15); }
+      }
+
+      // Rotate chevron when its sub-check is checked
+      // .sub-check + .sub-toggle-btn (adjacent sibling)
+      > .sub-check:checked + .sub-toggle-btn i { transform: rotate(180deg); }
+
+      // ── Home (first item): icon only, centered ─────────────
+      &:first-child > a {
+        justify-content: center;
+        .nav-label { display: none; }
+      }
+      &:first-child > .sub-toggle-btn { display: none; }
+
+      // ── Mobile submenu: accordion ──────────────────────────
+      > ul {
+        position:      static !important;
+        visibility:    visible !important;
+        opacity:       1 !important;
+        transform:     none !important;
+        max-height:    0;
+        overflow:      hidden;
+        padding:       0 var(--sp-2, 0.5rem);
+        margin:        0;
+        width:         100%;
+        flex-basis:    100%;
+        background:    rgba(37, 99, 235, 0.07);
+        border:        1px solid rgba(37, 99, 235, 0.18);
+        border-radius: 0 0 $nav-submenu-radius $nav-submenu-radius;
+        box-shadow:    none !important;
+        z-index:       auto !important;
+        transition:
+          max-height 0.35s $nav-transition-ease,
+          padding    0.35s $nav-transition-ease !important;
+
+        li a {
+          justify-content: flex-start;
+          font-size:       0.95rem;
+          padding:         var(--sp-3, 0.75rem) var(--sp-4, 1rem);
+          white-space:     normal;
+        }
+      }
+
+      // Submenu open: .sub-check is checked, ~ ul is a later sibling
+      > .sub-check:checked ~ ul {
+        max-height: 30rem !important;
+        padding:    var(--sp-2, 0.5rem) !important;
+      }
+
+      // Override the desktop :hover → submenu rule on mobile
+      &:hover > ul {
+        visibility: visible !important;
+        opacity:    1 !important;
+        transform:  none !important;
+        max-height: 0 !important;
+        padding:    0 var(--sp-2, 0.5rem) !important;
+      }
+
+      // If sub is checked, keep it open even when hovering
+      &:has(> .sub-check:checked):hover > ul {
+        max-height: 30rem !important;
+        padding:    var(--sp-2, 0.5rem) !important;
+      }
+
+    } // > li
+  } // nav > ul
+
+  // ── Trigger animation when #nav-check is checked ───────────
+  #nav-check:checked ~ nav > ul > li {
+    animation: nav-item-appear 0.42s $nav-transition-ease forwards;
+  }
+
+  // ── Arrow-shaped clip-path reveal ──────────────────────────
+  //    0%  : collapsed (zero width at left edge)
+  //    55% : chevron / arrow pointing right
+  //    100%: full rectangle
+  @keyframes nav-item-appear {
+    0% {
+      opacity:   0;
+      clip-path: polygon(0% 0%,  0%   0%,  0%    50%,  0%   100%,  0%   100%);
+    }
+    55% {
+      opacity:   1;
+      clip-path: polygon(0% 0%,  72%  0%,  100%  50%,  72%  100%,  0%   100%);
+    }
+    100% {
+      opacity:   1;
+      clip-path: polygon(0% 0%,  100% 0%,  100%  50%,  100% 100%,  0%   100%);
+    }
+  }
+
+} // @media (max-width: 640px)

@@ -1,39 +1,39 @@
-:root {
+﻿:root {
 
-  /* ── Layout ── */
+
   --page-padding:    40px;
   --grid-gap:        24px;
   --content-padding: 16px;
   --border-radius:   12px;
   --shadow:          0 4px 12px rgba(0,0,0,0.08);
 
-  /* ── Colour palette ── */
+
   --primary:      #2563EB;
   --bg-main:      #0F172A;
   --bg-section:   #111827;
   --text-main:    #E5E7EB;
   --border:       #1F2937;
 
-  /* Derived / semantic colours */
-  --color-muted:      #6B7280;  /* subdued text                 */
-  --color-accent:     #93c5fd;  /* highlight / accent           */
-  --color-link:       #60a5fa;  /* anchor default               */
-  --color-link-hover: #93c5fd;  /* anchor hover                 */
-  --color-strong:     #F1F5F9;  /* bold text                    */
-  --color-em:         #FBBF24;  /* italic / emphasis text       */
-  --color-mark:       rgba(37, 99, 235, 0.28); /* highlighted text */
 
-  /* ── Typography scale  (rem — relative to html base px) ── */
-  --fs-xs:   0.75rem;   /*  ~12 px */
-  --fs-sm:   0.875rem;  /*  ~14 px */
-  --fs-base: 1rem;      /*  ~16 px */
-  --fs-md:   1.125rem;  /*  ~18 px */
-  --fs-lg:   1.375rem;  /*  ~22 px */
-  --fs-xl:   1.625rem;  /*  ~26 px */
-  --fs-2xl:  2rem;      /*  ~32 px */
-  --fs-3xl:  2.5rem;    /*  ~40 px */
+  --color-muted:      #6B7280;
+  --color-accent:     #93c5fd;
+  --color-link:       #60a5fa;
+  --color-link-hover: #93c5fd;
+  --color-strong:     #F1F5F9;
+  --color-em:         #FBBF24;
+  --color-mark:       rgba(37, 99, 235, 0.28);
 
-  /* Heading sizes — derived from the scale so one edit moves all */
+
+  --fs-xs:   0.75rem;
+  --fs-sm:   0.875rem;
+  --fs-base: 1rem;
+  --fs-md:   1.125rem;
+  --fs-lg:   1.375rem;
+  --fs-xl:   1.625rem;
+  --fs-2xl:  2rem;
+  --fs-3xl:  2.5rem;
+
+
   --fs-h1: var(--fs-3xl);
   --fs-h2: var(--fs-2xl);
   --fs-h3: var(--fs-xl);
@@ -41,36 +41,35 @@
   --fs-h5: var(--fs-md);
   --fs-h6: var(--fs-base);
 
-  /* ── Spacing scale  (rem) ── */
-  --sp-1: 0.25rem;   /*  ~4 px  */
-  --sp-2: 0.5rem;    /*  ~8 px  */
-  --sp-3: 0.75rem;   /* ~12 px  */
-  --sp-4: 1rem;      /* ~16 px  */
-  --sp-5: 1.5rem;    /* ~24 px  */
-  --sp-6: 2rem;      /* ~32 px  */
-  --sp-8: 3rem;      /* ~48 px  */
 
-  /* ── Line-heights ── */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-8: 3rem;
+
+
   --lh-tight:  1.2;
   --lh-normal: 1.6;
   --lh-loose:  1.8;
 
-  /* ── Font-weights ── */
+
   --fw-normal: 400;
   --fw-medium: 500;
   --fw-bold:   700;
 
-  /* ── Lists ── */
+
   --list-indent:  1.5rem;
   --bullet-char:  '▸ ';
   --bullet-color: var(--primary);
 
-  /* ── Table ── */
+
   --table-border:   var(--border);
   --table-head-bg:  #1e3a5f;
   --table-th-color: #e0f0ff;
 }
-
 
 @media (max-width: 1024px) {
   :root {
@@ -79,15 +78,12 @@
   }
 }
 
-
 @media (max-width: 640px) {
   :root {
     --page-padding: 12px;
     --grid-gap: 8px;
   }
 }
-
-
 
 body {
   margin: 0;
@@ -108,15 +104,11 @@ header, footer {
   color: var(--text-main);
 }
 
-
 header {
   padding: var(--content-padding);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
 }
-
-/* Nav styles are in nav.css (compiled from nav.scss) */
-
 
 main > section {
   display: grid;
@@ -124,26 +116,23 @@ main > section {
   margin-top: var(--sp-5);
 }
 
-
 section {
-/*  background: var(--section-bg); */
+
   background: var(--bg-section);
   border: 1px solid var(--border);
   color: var(--text-main);
   box-shadow: var(--shadow);
 }
 
-
 #learn {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
 }
 
-
 img, video, iframe {
   width: 100%;
-  max-width: 43.75rem;   /* 700 ÷ 16 */
-  min-width: 12.5rem;    /* 200 ÷ 16 */
+  max-width: 43.75rem;
+  min-width: 12.5rem;
   height: auto;
   display: block;
   margin-top: var(--sp-3);
@@ -166,7 +155,6 @@ caption {
   font-weight: var(--fw-bold);
 }
 
-
 details {
   margin-top: var(--sp-3);
   padding: var(--sp-4);
@@ -174,7 +162,6 @@ details {
   border: 1px solid var(--border);
   background: var(--bg-section);
 }
-
 
 footer {
   padding: var(--sp-4);
@@ -184,7 +171,7 @@ footer {
 }
 
 footer section {
-  background: transparent; /* or inherit */
+  background: transparent;
   border: none;
   box-shadow: none;
 }
@@ -193,9 +180,6 @@ footer a {
   color: #93c5fd;
 }
 
-
-
-/* Base font size (large screens) with smooth transition */
 html {
   font-size: 16px;
   transition: font-size 0.4s ease;
@@ -206,12 +190,11 @@ html {
   font-size: 1.2rem;
 }
 
-/* ── Main Grid Container ── */
 .main-grid {
   display: grid;
   gap: var(--grid-gap);
   margin-top: var(--sp-5);
-  /* 4-column base: lets rows 2 and 4 share different ratios */
+
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-areas:
     "zone1 zone1 zone1 zone1"
@@ -220,11 +203,10 @@ html {
     "zone7 zone7 zone5 zone6";
 }
 
-/* ── Zone base ── */
 .zone {
   padding: var(--content-padding);
   border-radius: var(--border-radius);
-  min-width: 0;          /* prevent grid blowout */
+  min-width: 0;
   overflow: visible;
 }
 
@@ -237,7 +219,6 @@ html {
 .zone7 { grid-area: zone7; }
 .zone8 { grid-area: zone8; }
 
-/* Shared zone heading */
 .zone-title {
   margin: 0 0 0.8em 0;
   font-size: 1.05rem;
@@ -246,14 +227,12 @@ html {
   padding-bottom: 0.4em;
 }
 
-/* ── Zone 1: F-Pattern ── */
 .zone1 {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-/* F-Pattern top bar — full width */
 .f-bar {
   background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
   padding: 1.5rem 2rem;
@@ -278,7 +257,6 @@ html {
   color: rgba(255, 255, 255, 0.88);
 }
 
-/* F-Pattern secondary bar — ~70% width */
 .f-secondary {
   width: 70%;
   padding: 0.9rem 1.25rem;
@@ -288,7 +266,6 @@ html {
   font-size: 1rem;
 }
 
-/* F-Pattern body — left-aligned standard text */
 .f-content {
   padding: 0 0.25rem;
 }
@@ -302,13 +279,11 @@ html {
   font-size: 1rem;
 }
 
-/* ── Zone 2: Table wrap (allows horizontal scroll inside zone only) ── */
 .table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-/* ── Zone 3: Events ── */
 .event-list {
   padding-left: 1rem;
   margin: 0 0 0.8rem 0;
@@ -327,7 +302,6 @@ html {
   margin-bottom: 0.2em;
 }
 
-/* ── Zone 5: Online users ── */
 .user-list {
   list-style: none;
   padding: 0;
@@ -343,7 +317,6 @@ html {
 .user-online { color: #4ade80; }
 .user-away    { color: #facc15; }
 
-/* ── Zone 7: Server status ── */
 .status-list {
   list-style: none;
   padding: 0;
@@ -356,14 +329,12 @@ html {
   font-size: 0.9rem;
 }
 
-/* ── Zone 8: Creative additional content ── */
 .zone8 {
   background: linear-gradient(160deg, #0d1b2e 0%, #0f172a 100%);
   border: 1px solid #1e3a5f;
   box-shadow: 0 0 24px rgba(37, 99, 235, 0.12);
 }
 
-/* Override old #learn grid — zone8 uses its own internal grid */
 #learn {
   display: block;
 }
@@ -451,7 +422,7 @@ html {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-end;   /* align buttons to the right */
+  justify-content: flex-end;
   gap: 0.5rem;
   margin-top: 0.4rem;
 }
@@ -473,7 +444,6 @@ html {
   border-color: var(--primary);
 }
 
-/* Responsive iframe — no fixed dimensions */
 .iframe-wrap {
   position: relative;
   width: 100%;
@@ -492,7 +462,6 @@ html {
   margin: 0;
 }
 
-/* Images inside zone8 fill their container */
 .zone8-media img,
 .zone8 figure img {
   width: 100%;
@@ -503,7 +472,6 @@ html {
   display: block;
   margin: 0;
 }
-
 
 @media (max-width: 1024px) {
   html {
@@ -525,7 +493,7 @@ html {
     width: 85%;
   }
 
-  /* Zone 8 inner: 2 columns on medium */
+
   .zone8-inner {
     grid-template-columns: 1fr 1fr;
   }
@@ -534,7 +502,6 @@ html {
     grid-column: 1 / -1;
   }
 }
-
 
 @media (max-width: 640px) {
   html {
@@ -574,12 +541,12 @@ html {
     grid-column: auto;
   }
 
-  /* Remove minimum width on media elements for small screens */
+
   img, video, iframe {
     min-width: unset;
   }
 
-  /* Disable ALL transitions and @keyframes animations on small screens */
+
   *, *::before, *::after {
     transition:                none !important;
     animation-duration:        0s   !important;
@@ -592,9 +559,6 @@ html {
   }
 }
 
-
-
-/* Caption repositioned BELOW the table */
 caption {
   caption-side: bottom;
   margin-top: 0.6em;
@@ -607,30 +571,24 @@ caption {
   padding: 0.4em 0;
 }
 
-/* ── Outer wrapper: rounded corners clipping ── */
 .table-wrap {
   border-radius: var(--border-radius);
-  overflow: hidden;                     /* clips the table's own corners */
-  border: 1px solid var(--border);      /* single outer border ring */
+  overflow: hidden;
+  border: 1px solid var(--border);
 }
 
-/* ── Inner wrapper: horizontal scrollbar ── */
-/* Always present so the rounded corners are never broken by overflow */
 .table-scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-/* ── Table base reset (zone2 context) ── */
 .zone2 table {
   margin-top: 0;
   width: 100%;
-  min-width: 31.25rem;  /* 500 ÷ 16 — below this width the inner scroll kicks in */
+  min-width: 31.25rem;
   border-collapse: collapse;
-  border: none;        /* border is handled by .table-wrap outer ring */
+  border: none;
 }
-
-
 
 .zone2 thead th:nth-child(odd),
 .zone2 tbody  td:nth-child(odd),
@@ -638,13 +596,11 @@ caption {
   background-color: #12233a;
 }
 
-
 .zone2 thead th:nth-child(even),
 .zone2 tbody  td:nth-child(even),
 .zone2 tfoot  td:nth-child(even) {
   background-color: #0e1b2d;
 }
-
 
 .zone2 thead th {
   background-color: #1e3a5f;
@@ -655,11 +611,9 @@ caption {
   white-space: nowrap;
 }
 
-
 .zone2 thead th:nth-child(even) {
   background-color: #172d4e;
 }
-
 
 .zone2 tfoot td {
   background-color: #0a1828;
@@ -669,46 +623,39 @@ caption {
   border-top: 2px solid var(--border);
 }
 
-
 .zone2 tbody td {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-
 .zone2 tbody tr:hover > td {
   background-color: #1a3a5c;
 }
-
 
 .zone2 tbody tr:hover > td:hover {
   background-color: var(--primary);
   color: #ffffff;
 }
 
-
-
 .tut-text {
-  /* Radial gradient: bright/near-white at center → medium blue → deep blue at edges */
+
   background-image: radial-gradient(
     ellipse at 50% 50%,
-    #e0f2fe  0%,    /* bright near-white center  */
-    #60a5fa 40%,    /* medium sky-blue            */
-    #1d4ed8 100%    /* deep navy at the edges     */
+    #e0f2fe  0%,
+    #60a5fa 40%,
+    #1d4ed8 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
 
-  /* transparent lets the gradient above show through the text glyphs */
-  -webkit-text-fill-color: transparent;
-  color: transparent; /* fallback for non-webkit */
 
-  /* Animate the text-fill from gradient-transparent → solid white */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+
   transition: -webkit-text-fill-color 0.35s ease,
               text-shadow 0.35s ease;
 }
 
-/* Hover: the button box already brightens via .tut-link:hover;
-   the text itself becomes solid white (glowing) */
 .tut-link:hover .tut-text {
   -webkit-text-fill-color: white;
   color: white;
@@ -716,13 +663,11 @@ caption {
                0 0 24px rgba(147, 197, 253, 0.5);
 }
 
-
-/* ── Outer container: fixed, semi-transparent ── */
 .back-to-top {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width:  3.625rem;   /* 58px ÷ 16 */
+  width:  3.625rem;
   height: 3.625rem;
   display: flex;
   align-items: center;
@@ -730,7 +675,7 @@ caption {
   text-decoration: none;
   z-index: 9999;
 
-  /* Semi-transparent by default */
+
   opacity: 0.5;
   transition: opacity 0.35s ease;
 }
@@ -739,7 +684,6 @@ caption {
   opacity: 1;
 }
 
-/* ── CSS tooltip shown on hover ── */
 .back-to-top::after {
   content: 'Go back to the top of the page';
   position: absolute;
@@ -763,13 +707,12 @@ caption {
   transform: translateY(0);
 }
 
-/* ── Rotating ring ── */
 .btt-ring {
   position: absolute;
   inset: 0;
   border-radius: 50%;
 
-  /* Radial gradient: lighter blue at center, near-black at edges */
+
   background: radial-gradient(
     circle at 42% 38%,
     #1e3a5f 0%,
@@ -777,19 +720,18 @@ caption {
     #050c1a 100%
   );
 
-
   border-top:    3px solid #020710;
   border-bottom: 3px solid #020710;
   border-left:   3px solid #2563eb;
   border-right:  3px solid #2563eb;
 
-  /* Inset shadow — darker than background, gives depth */
+
   box-shadow:
     inset 0  5px 16px rgba(0, 0, 0, 0.75),
     inset 0 -3px  8px rgba(255, 255, 255, 0.04),
     0 4px 12px rgba(0, 0, 0, 0.55);
 
-  /* Forward rotation on hover, reverse on leave (transition handles both) */
+
   transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -797,27 +739,23 @@ caption {
   transform: rotate(360deg);
 }
 
-/* ── Arrow — sibling of ring, never rotates ── */
 .btt-arrow {
   position: relative;
-  z-index: 1;              
+  z-index: 1;
   font-size: 1.45rem;
   line-height: 1;
   color: #93c5fd;
   user-select: none;
 
-
   filter: blur(1.8px);
   transition: filter 0.35s ease, color 0.35s ease;
 }
-
 
 .back-to-top:hover .btt-arrow {
   filter: blur(0);
   color: #e0f2fe;
 }
 
-/* Disable the rotation animation on small screens (keeps animations-off rule) */
 @media (max-width: 640px) {
   .btt-ring {
     transition: none;
