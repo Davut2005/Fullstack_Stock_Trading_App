@@ -1,4 +1,4 @@
-﻿:root {
+:root {
 
 
   --page-padding:    40px;
@@ -547,7 +547,9 @@ html {
   }
 
 
-  *, *::before, *::after {
+  *:not(:where(nav, nav *)),
+  *:not(:where(nav, nav *))::before,
+  *:not(:where(nav, nav *))::after {
     transition:                none !important;
     animation-duration:        0s   !important;
     animation-delay:           0s   !important;
@@ -557,6 +559,7 @@ html {
   html {
     transition: font-size 0.4s ease !important;
   }
+
 }
 
 caption {

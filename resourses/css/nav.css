@@ -180,6 +180,9 @@ nav > ul > li:hover > ul {
     top: var(--sp-3, 0.75rem);
     left: var(--sp-3, 0.75rem);
     z-index: 1001;
+    background: rgba(2, 6, 23, 0.7);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    box-shadow: 0 10px 24px rgba(2, 6, 23, 0.45);
   }
   #nav-check:checked + .nav-toggle .nav-icon-open {
     display: none;
@@ -190,7 +193,7 @@ nav > ul > li:hover > ul {
   nav {
     position: fixed;
     inset: 0;
-    background: rgba(15, 23, 42, 0.97);
+    background: radial-gradient(circle at top, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.98));
     backdrop-filter: blur(8px);
     z-index: 1000;
     display: flex;
@@ -202,19 +205,21 @@ nav > ul > li:hover > ul {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0.28s;
+    transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0.28s !important;
   }
-  #nav-check:checked ~ nav {
+  .nav-toggle:hover ~ nav,
+  #nav-check:checked ~ nav,
+  nav:hover {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
   nav > ul {
     flex-direction: column;
     align-items: stretch;
     gap: var(--sp-2, 0.5rem);
-    width: min(22rem, 88vw);
+    width: min(23rem, 90vw);
     padding: 0 0 var(--sp-8, 2rem);
   }
   nav > ul li {
@@ -225,32 +230,36 @@ nav > ul > li:hover > ul {
     flex-wrap: wrap;
     align-items: center;
     border-radius: 0.75rem;
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.9));
+    border: 1px solid rgba(125, 211, 252, 0.2);
+    box-shadow: inset 0 1px 0 rgba(148, 163, 184, 0.28), 0 10px 18px rgba(2, 6, 23, 0.45);
+    margin-bottom: 0.45rem;
     opacity: 0;
     clip-path: polygon(0% 0%, 0% 0%, 0% 50%, 0% 100%, 0% 100%);
   }
   nav > ul > li:nth-child(1) {
-    animation-delay: 0s;
+    animation-delay: 0s !important;
   }
   nav > ul > li:nth-child(2) {
-    animation-delay: 0.07s;
+    animation-delay: 0.07s !important;
   }
   nav > ul > li:nth-child(3) {
-    animation-delay: 0.14s;
+    animation-delay: 0.14s !important;
   }
   nav > ul > li:nth-child(4) {
-    animation-delay: 0.21s;
+    animation-delay: 0.21s !important;
   }
   nav > ul > li:nth-child(5) {
-    animation-delay: 0.28s;
+    animation-delay: 0.28s !important;
   }
   nav > ul > li:nth-child(6) {
-    animation-delay: 0.35s;
+    animation-delay: 0.35s !important;
   }
   nav > ul > li:nth-child(7) {
-    animation-delay: 0.42s;
+    animation-delay: 0.42s !important;
   }
   nav > ul > li:nth-child(8) {
-    animation-delay: 0.49s;
+    animation-delay: 0.49s !important;
   }
   nav > ul > li > a {
     display: flex;
@@ -258,10 +267,11 @@ nav > ul > li:hover > ul {
     gap: var(--sp-3, 0.75rem);
     padding: var(--sp-4, 1rem) var(--sp-5, 1.25rem);
     font-size: 1.05rem;
-    color: var(--nav-text);
+    color: #e2e8f0;
     flex: 1;
     border-radius: 0.75rem;
-    transition: background 0.2s ease;
+    text-shadow: 0 1px 4px rgba(2, 6, 23, 0.45);
+    transition: background 0.2s ease, color 0.2s ease !important;
   }
   nav > ul > li > a::before {
     display: none;
@@ -277,9 +287,11 @@ nav > ul > li:hover > ul {
     font-size: 1rem;
     width: 1.2em;
     flex-shrink: 0;
+    color: #7dd3fc;
   }
   nav > ul > li > a:hover {
-    background: rgba(37, 99, 235, 0.15);
+    background: rgba(56, 189, 248, 0.12);
+    color: #f8fafc;
   }
   nav > ul > li > .sub-toggle-btn {
     display: flex;
@@ -288,17 +300,17 @@ nav > ul > li:hover > ul {
     width: 2.8rem;
     height: 2.8rem;
     cursor: pointer;
-    color: var(--nav-text);
+    color: #e2e8f0;
     flex-shrink: 0;
     border-radius: 0.75rem;
     transition: background 0.2s ease;
   }
   nav > ul > li > .sub-toggle-btn i {
     font-size: 0.75rem;
-    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
   nav > ul > li > .sub-toggle-btn:hover {
-    background: rgba(37, 99, 235, 0.15);
+    background: rgba(56, 189, 248, 0.12);
   }
   nav > ul > li > .sub-check:checked + .sub-toggle-btn i {
     transform: rotate(180deg);
@@ -323,8 +335,8 @@ nav > ul > li:hover > ul {
     margin: 0;
     width: 100%;
     flex-basis: 100%;
-    background: rgba(37, 99, 235, 0.07);
-    border: 1px solid rgba(37, 99, 235, 0.18);
+    background: rgba(2, 6, 23, 0.4);
+    border: 1px solid rgba(56, 189, 248, 0.18);
     border-radius: 0 0 0.75rem 0.75rem;
     box-shadow: none !important;
     z-index: auto !important;
@@ -335,24 +347,34 @@ nav > ul > li:hover > ul {
     font-size: 0.95rem;
     padding: var(--sp-3, 0.75rem) var(--sp-4, 1rem);
     white-space: normal;
+    color: #cbd5e1;
   }
-  nav > ul > li > .sub-check:checked ~ ul {
-    max-height: 30rem !important;
-    padding: var(--sp-2, 0.5rem) !important;
+  nav > ul > li > ul li a i {
+    color: #38bdf8;
   }
-  nav > ul > li:hover > ul {
+  nav > ul > li > ul li a:hover {
+    color: #f8fafc;
+    background: rgba(56, 189, 248, 0.08);
+  }
+  nav > ul > li > .sub-check:checked ~ ul, nav > ul > li:hover > ul {
     visibility: visible !important;
     opacity: 1 !important;
     transform: none !important;
-    max-height: 0 !important;
-    padding: 0 var(--sp-2, 0.5rem) !important;
-  }
-  nav > ul > li:has(> .sub-check:checked):hover > ul {
     max-height: 30rem !important;
     padding: var(--sp-2, 0.5rem) !important;
   }
-  #nav-check:checked ~ nav > ul > li {
-    animation: nav-item-appear 0.42s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  nav > ul > li:hover > .sub-toggle-btn i {
+    transform: rotate(180deg);
+  }
+  .nav-toggle:hover ~ nav > ul > li,
+  #nav-check:checked ~ nav > ul > li,
+  nav:hover > ul > li {
+    animation-name: nav-item-appear !important;
+    animation-duration: 0.42s !important;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    animation-fill-mode: forwards !important;
+    animation-iteration-count: 1 !important;
+    animation-play-state: running !important;
   }
   @keyframes nav-item-appear {
     0% {
