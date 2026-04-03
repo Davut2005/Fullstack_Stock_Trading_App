@@ -19,6 +19,8 @@ $submenu-shadow:      rgba(0, 0, 0, 0.45);
 $underline-count:     2;       // number of lines in the double underline
 $underline-thickness: 2px;     // height of each line
 $underline-gap:       5px;     // vertical gap between the two lines
+$burger-line-count:   3;
+$burger-stagger:      0.12s;
 
 
 // ── CSS variables declared on body ───────────────────
@@ -262,27 +264,42 @@ nav {
   display: none;
 }
 
-// Close icon: hidden until hamburger is checked
-.nav-icon-close {
-  display: none;
-}
-
 // Hamburger label: hidden on large / medium screens
 .nav-toggle {
   display:         none;
   align-items:     center;
   justify-content: center;
+  position:        relative;
   background:      var(--nav-bg);
   border:          1px solid var(--nav-border);
   border-radius:   $nav-radius;
   color:           var(--nav-text);
-  font-size:       1.3rem;
   width:           2.6rem;
   height:          2.6rem;
   cursor:          pointer;
   transition:
     background $nav-transition-dur ease,
     color      $nav-transition-dur ease;
+
+  // How: build hamburger with 3 absolute bars (span elements).
+  // Why: this satisfies the requirement to create the icon in CSS/HTML, not as an image/icon font.
+  .burger-line {
+    position:         absolute;
+    left:             50%;
+    width:            1.25rem;
+    height:           0.16rem;
+    border-radius:    999px;
+    background-color: #7dd3fc;
+    transform:        translate(-50%, -50%) scaleX(1);
+    opacity:          0.95;
+    box-shadow:       0 0 0.32rem rgba(56, 189, 248, 0.5);
+  }
+
+  @for $i from 1 through $burger-line-count {
+    .burger-line:nth-child(#{$i}) {
+      top: calc(50% + #{($i - 2) * 0.38rem});
+    }
+  }
 
   &:hover {
     background:   #{$overlay-bg};
@@ -292,9 +309,6 @@ nav {
 }
 
 
-// ─────────────────────────────────────────────────────────────
-// MEDIUM SCREEN (≤ 1024px) — icon-only top-level links
-// ─────────────────────────────────────────────────────────────
 @media (max-width: 1024px) {
   nav > ul { gap: var(--sp-2); }
 
@@ -307,9 +321,6 @@ nav {
 }
 
 
-// ─────────────────────────────────────────────────────────────
-// SMALL SCREEN (≤ 640px) — pure-CSS hamburger (checkbox hack)
-// ─────────────────────────────────────────────────────────────
 @media (max-width: 640px) {
 
   // ── Show hamburger label as fixed button ───────────────────
@@ -324,9 +335,22 @@ nav {
     box-shadow: 0 10px 24px rgba(2, 6, 23, 0.45);
   }
 
-  // ── Swap bars ↔ xmark when checkbox is checked ─────────────
-  #nav-check:checked + .nav-toggle .nav-icon-open  { display: none; }
-  #nav-check:checked + .nav-toggle .nav-icon-close { display: inline; }
+  // How: animate each bar when small-screen hamburger appears.
+  // Why: requirement asks color + geometric transform + opacity with >=3 keyframes.
+  .nav-toggle .burger-line {
+    animation-name:            burger-appear;
+    animation-duration:        0.72s;
+    animation-timing-function: $nav-transition-ease;
+    animation-fill-mode:       both;
+  }
+
+  // How: stagger delays generated with SASS @for.
+  // Why: requirement asks each bar to start successively by t milliseconds.
+  @for $i from 1 through $burger-line-count {
+    .nav-toggle .burger-line:nth-child(#{$i}) {
+      animation-delay: ($i - 1) * $burger-stagger;
+    }
+  }
 
   // ── Nav overlay: hidden by default ────────────────────────
   nav {
@@ -555,6 +579,29 @@ nav {
     100% {
       opacity:   1;
       clip-path: polygon(0% 0%,  100% 0%,  100%  50%,  100% 100%,  0%   100%);
+    }
+  }
+
+  @keyframes burger-appear {
+    0% {
+      background-color: #0f172a;
+      transform:        translate(-50%, -50%) scaleX(0.35) rotate(-14deg);
+      opacity:          0.1;
+    }
+    45% {
+      background-color: #38bdf8;
+      transform:        translate(-50%, -50%) scaleX(1.22) rotate(8deg);
+      opacity:          0.7;
+    }
+    75% {
+      background-color: #7dd3fc;
+      transform:        translate(-50%, -50%) scaleX(0.9) rotate(-4deg);
+      opacity:          0.95;
+    }
+    100% {
+      background-color: #e0f2fe;
+      transform:        translate(-50%, -50%) scaleX(1) rotate(0deg);
+      opacity:          1;
     }
   }
 

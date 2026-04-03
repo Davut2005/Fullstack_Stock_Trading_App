@@ -132,23 +132,39 @@ nav > ul > li:hover > ul {
   display: none;
 }
 
-.nav-icon-close {
-  display: none;
-}
-
 .nav-toggle {
   display: none;
   align-items: center;
   justify-content: center;
+  position: relative;
   background: var(--nav-bg);
   border: 1px solid var(--nav-border);
   border-radius: 0.25rem;
   color: var(--nav-text);
-  font-size: 1.3rem;
   width: 2.6rem;
   height: 2.6rem;
   cursor: pointer;
   transition: background 0.28s ease, color 0.28s ease;
+}
+.nav-toggle .burger-line {
+  position: absolute;
+  left: 50%;
+  width: 1.25rem;
+  height: 0.16rem;
+  border-radius: 999px;
+  background-color: #7dd3fc;
+  transform: translate(-50%, -50%) scaleX(1);
+  opacity: 0.95;
+  box-shadow: 0 0 0.32rem rgba(56, 189, 248, 0.5);
+}
+.nav-toggle .burger-line:nth-child(1) {
+  top: calc(50% + -0.38rem);
+}
+.nav-toggle .burger-line:nth-child(2) {
+  top: calc(50% + 0rem);
+}
+.nav-toggle .burger-line:nth-child(3) {
+  top: calc(50% + 0.38rem);
 }
 .nav-toggle:hover {
   background: rgba(37, 99, 235, 0.18);
@@ -184,11 +200,20 @@ nav > ul > li:hover > ul {
     border: 1px solid rgba(56, 189, 248, 0.35);
     box-shadow: 0 10px 24px rgba(2, 6, 23, 0.45);
   }
-  #nav-check:checked + .nav-toggle .nav-icon-open {
-    display: none;
+  .nav-toggle .burger-line {
+    animation-name: burger-appear;
+    animation-duration: 0.72s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: both;
   }
-  #nav-check:checked + .nav-toggle .nav-icon-close {
-    display: inline;
+  .nav-toggle .burger-line:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .nav-toggle .burger-line:nth-child(2) {
+    animation-delay: 0.12s;
+  }
+  .nav-toggle .burger-line:nth-child(3) {
+    animation-delay: 0.24s;
   }
   nav {
     position: fixed;
@@ -388,6 +413,28 @@ nav > ul > li:hover > ul {
     100% {
       opacity: 1;
       clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 100% 100%, 0% 100%);
+    }
+  }
+  @keyframes burger-appear {
+    0% {
+      background-color: #0f172a;
+      transform: translate(-50%, -50%) scaleX(0.35) rotate(-14deg);
+      opacity: 0.1;
+    }
+    45% {
+      background-color: #38bdf8;
+      transform: translate(-50%, -50%) scaleX(1.22) rotate(8deg);
+      opacity: 0.7;
+    }
+    75% {
+      background-color: #7dd3fc;
+      transform: translate(-50%, -50%) scaleX(0.9) rotate(-4deg);
+      opacity: 0.95;
+    }
+    100% {
+      background-color: #e0f2fe;
+      transform: translate(-50%, -50%) scaleX(1) rotate(0deg);
+      opacity: 1;
     }
   }
 }
