@@ -764,3 +764,190 @@ caption {
     transition: none;
   }
 }
+
+@page :left {
+  margin-top: 1.5cm;
+  margin-bottom: 1.5cm;
+  margin-left: 2cm;
+  margin-right: 1cm;
+}
+
+@page :right {
+  margin-top: 1.5cm;
+  margin-bottom: 1.5cm;
+  margin-left: 1cm;
+  margin-right: 2cm;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  body {
+    position: relative;
+  }
+
+  body::after {
+    content: "Muhammetgurbanov\A Davut";
+    white-space: pre;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 2.1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  header {
+    position: relative;
+    padding-top: 2.6rem;
+  }
+
+  header::after {
+    content: "Printed Version";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    padding: 0.55rem 0.7rem;
+    text-align: center;
+    border: 3px double #000;
+    color: #000;
+    background: #fff;
+    font-weight: 700;
+    box-sizing: border-box;
+  }
+
+  img,
+  picture,
+  source,
+  video,
+  audio,
+  iframe,
+  embed,
+  object,
+  canvas,
+  svg,
+  figure,
+  figcaption,
+  .zone8-media,
+  .back-to-top {
+    display: none !important;
+  }
+
+  .main-grid,
+  .zone8-inner {
+    display: block !important;
+  }
+
+  .zone {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  a[href]::after {
+    content: none !important;
+  }
+
+  .nav-toggle,
+  .sub-toggle-btn,
+  .nav-check,
+  .sub-check {
+    display: none !important;
+  }
+
+  h1 {
+    text-align: center !important;
+    margin: 0 0 1rem !important;
+    color: #000 !important;
+  }
+
+  nav {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: static !important;
+    transform: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 0 1rem !important;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  nav ul {
+    display: block !important;
+    list-style: disc !important;
+    margin: 0 0 0 1.25rem !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  nav li {
+    display: list-item !important;
+    margin: 0.15rem 0 !important;
+    position: static !important;
+    opacity: 1 !important;
+    clip-path: none !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    animation: none !important;
+  }
+
+  nav li a {
+    display: inline !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+  }
+
+  nav li > ul {
+    display: block !important;
+    list-style: circle !important;
+    margin: 0.2rem 0 0.3rem 1.2rem !important;
+    padding: 0 !important;
+    position: static !important;
+    transform: none !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    max-height: none !important;
+  }
+
+  nav i {
+    display: none !important;
+  }
+
+  .nav-label {
+    display: inline !important;
+  }
+
+  footer {
+    break-before: page;
+    page-break-before: always;
+  }
+}
