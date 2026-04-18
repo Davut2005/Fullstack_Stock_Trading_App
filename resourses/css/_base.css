@@ -1,0 +1,85 @@
+html {
+  font-size: 16px;
+  transition: font-size 0.4s ease;
+}
+
+body {
+  margin: 0;
+  padding-left: var(--page-padding);
+  padding-right: var(--page-padding);
+  font-family: Arial, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+main {
+  background: var(--bg-main);
+}
+
+header,
+footer {
+  background: var(--bg-section);
+  color: var(--text-main);
+}
+
+header {
+  padding: var(--content-padding);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+main>section {
+  display: grid;
+  gap: var(--grid-gap);
+  margin-top: var(--sp-5);
+}
+
+section {
+
+  background: var(--bg-section);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  box-shadow: var(--shadow);
+}
+
+img,
+video,
+iframe {
+  width: 100%;
+  max-width: 43.75rem;
+  min-width: 12.5rem;
+  height: auto;
+  display: block;
+  margin-top: var(--sp-3);
+}
+
+details {
+  margin-top: var(--sp-3);
+  padding: var(--sp-4);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border);
+  background: var(--bg-section);
+}
+
+footer {
+  padding: var(--sp-4);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-top: var(--sp-5);
+}
+
+footer section {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+footer a {
+  color: #93c5fd;
+}
+
+.font-delius {
+  font-family: "Delius Swash Caps", cursive;
+  font-size: 1.2rem;
+}

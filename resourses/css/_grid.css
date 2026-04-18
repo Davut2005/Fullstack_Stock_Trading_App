@@ -1,0 +1,59 @@
+.main-grid {
+  display: grid;
+  gap: var(--grid-gap);
+  margin-top: var(--sp-5);
+
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "zone1 zone1 zone1 zone1"
+    "zone3 zone2 zone2 zone4"
+    "zone8 zone8 zone8 zone8"
+    "zone7 zone7 zone5 zone6";
+}
+
+.zone {
+  padding: var(--content-padding);
+  border-radius: var(--border-radius);
+  min-width: 0;
+  overflow: visible;
+}
+
+.zone1 {
+  grid-area: zone1;
+}
+
+.zone2 {
+  grid-area: zone2;
+}
+
+.zone3 {
+  grid-area: zone3;
+}
+
+.zone4 {
+  grid-area: zone4;
+}
+
+.zone5 {
+  grid-area: zone5;
+}
+
+.zone6 {
+  grid-area: zone6;
+}
+
+.zone7 {
+  grid-area: zone7;
+}
+
+.zone8 {
+  grid-area: zone8;
+}
+
+.zone-title {
+  margin: 0 0 0.8em 0;
+  font-size: 1.05rem;
+  color: #93c5fd;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.4em;
+}

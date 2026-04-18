@@ -1,0 +1,90 @@
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3.625rem;
+  height: 3.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  z-index: 9999;
+
+
+  opacity: 0.5;
+  transition: opacity 0.35s ease;
+}
+
+.back-to-top:hover {
+  opacity: 1;
+}
+
+.back-to-top::after {
+  content: 'Go back to the top of the page';
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  background: var(--bg-section);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  padding: 0.35em 0.8em;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.back-to-top:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.btt-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+
+
+  background: radial-gradient(circle at 42% 38%,
+      #1e3a5f 0%,
+      #0d1f3c 45%,
+      #050c1a 100%);
+
+  border-top: 3px solid #020710;
+  border-bottom: 3px solid #020710;
+  border-left: 3px solid #2563eb;
+  border-right: 3px solid #2563eb;
+
+
+  box-shadow:
+    inset 0 5px 16px rgba(0, 0, 0, 0.75),
+    inset 0 -3px 8px rgba(255, 255, 255, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.55);
+
+
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.back-to-top:hover .btt-ring {
+  transform: rotate(360deg);
+}
+
+.btt-arrow {
+  position: relative;
+  z-index: 1;
+  font-size: 1.45rem;
+  line-height: 1;
+  color: #93c5fd;
+  user-select: none;
+
+  filter: blur(1.8px);
+  transition: filter 0.35s ease, color 0.35s ease;
+}
+
+.back-to-top:hover .btt-arrow {
+  filter: blur(0);
+  color: #e0f2fe;
+}

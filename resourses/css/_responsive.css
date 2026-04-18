@@ -1,0 +1,93 @@
+@media (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+
+  .main-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "zone1 zone1"
+      "zone3 zone2"
+      "zone4 zone4"
+      "zone8 zone8"
+      "zone7 zone5"
+      "zone6 zone6";
+  }
+
+  .f-secondary {
+    width: 85%;
+  }
+
+
+  .zone8-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .zone8-hero {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 13px;
+  }
+
+  .main-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "zone1"
+      "zone2"
+      "zone3"
+      "zone4"
+      "zone5"
+      "zone6"
+      "zone7"
+      "zone8";
+  }
+
+  .f-secondary {
+    width: 100%;
+  }
+
+  .f-bar h2 {
+    font-size: 1.5rem;
+  }
+
+  .f-bar h3 {
+    font-size: 0.95rem;
+  }
+
+  .zone8-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .zone8-hero {
+    grid-column: auto;
+  }
+
+
+  img,
+  video,
+  iframe {
+    min-width: unset;
+  }
+
+
+  *:not(:where(nav, nav *)),
+  *:not(:where(nav, nav *))::before,
+  *:not(:where(nav, nav *))::after {
+    transition: none !important;
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  html {
+    transition: font-size 0.4s ease !important;
+  }
+
+  .btt-ring {
+    transition: none;
+  }
+}

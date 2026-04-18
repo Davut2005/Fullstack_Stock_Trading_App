@@ -1,0 +1,49 @@
+.event-list {
+  padding-left: 1rem;
+  margin: 0 0 0.8rem 0;
+}
+
+.event-list li {
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.event-list time {
+  display: block;
+  font-size: 0.8rem;
+  color: #93c5fd;
+  margin-bottom: 0.2em;
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.8rem 0;
+}
+
+.user-list li {
+  padding: 0.3rem 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.user-online {
+  color: #4ade80;
+}
+
+.user-away {
+  color: #facc15;
+}
+
+.status-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.8rem 0;
+}
+
+.status-list li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
