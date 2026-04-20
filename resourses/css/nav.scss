@@ -1,261 +1,256 @@
-
-
 @use 'sass:list';
 
 
-// ── SASS variables (compile-time constants) ───────────
-$nav-radius:          0.25rem;
-$nav-submenu-radius:  0.75rem;
-$nav-transition-dur:  0.28s;
-$nav-transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+$nav-radius: 0.25rem;
+$nav-submenu-radius: 0.75rem;
+$nav-transition-dur: 0.28s;
+$nav-transition-ease: cubic-bezier(4, 1, 2, 1.5);
 
-$overlay-bg:          rgba(37, 99, 235, 0.18);
-$overlay-border:      rgba(147, 197, 253, 0.55);
-$overlay-shadow-1:    rgba(37, 99, 235, 0.40);
-$overlay-shadow-2:    rgba(147, 197, 253, 0.30);
-$submenu-shadow:      rgba(0, 0, 0, 0.45);
+$overlay-bg: rgba(37, 99, 235, 0.18);
+$overlay-border: rgba(147, 197, 253, 0.55);
+$overlay-shadow-1: rgba(37, 99, 235, 0.40);
+$overlay-shadow-2: rgba(147, 197, 253, 0.30);
+$submenu-shadow: rgba(0, 0, 0, 0.45);
 
-// Underline config — drives the @for loop
-$underline-count:     2;       // number of lines in the double underline
-$underline-thickness: 2px;     // height of each line
-$underline-gap:       5px;     // vertical gap between the two lines
-$burger-line-count:   3;
-$burger-stagger:      0.12s;
+$underline-count: 2;
+$underline-thickness: 2px;
+$underline-gap: 5px;
+$burger-line-count: 3;
+$burger-stagger: 0.12s;
 
 
-// ── CSS variables declared on body ───────────────────
-//    Theme-dependent: swap these values to restyle the
-//    whole menu without touching component rules.
 body {
-  --nav-link-color:       var(--color-accent);
+  --nav-link-color: var(--color-accent);
   --nav-link-hover-color: var(--color-accent);
-  --nav-bg:               var(--bg-section);
-  --nav-border:           var(--border);
-  --nav-text:             var(--text-main);
-  --nav-line-1:           var(--color-accent);   // first underline colour
-  --nav-line-2:           var(--primary);         // second underline colour
-  --nav-icon-color:       var(--color-accent);
+  --nav-bg: var(--bg-section);
+  --nav-border: var(--border);
+  --nav-text: var(--text-main);
+  --nav-line-1: var(--color-accent); // first underline colour
+  --nav-line-2: var(--primary); // second underline colour
+  --nav-icon-color: var(--color-accent);
 }
 
 
-// ── Reusable placeholder selectors (@extend targets) ─
 
-// Shared "hidden → visible" transition (closing delay trick)
 %transition-scale {
   transition:
-    transform  $nav-transition-dur $nav-transition-ease,
-    opacity    $nav-transition-dur ease,
-    visibility 0s linear $nav-transition-dur;   // delay visibility on close
+    transform $nav-transition-dur $nav-transition-ease,
+    opacity $nav-transition-dur ease,
+    visibility 0s linear $nav-transition-dur; // delay visibility on close
 }
 
 %transition-scale-open {
   transition:
-    transform  $nav-transition-dur $nav-transition-ease,
-    opacity    $nav-transition-dur ease,
-    visibility 0s linear 0s;                    // instant visibility on open
+    transform $nav-transition-dur $nav-transition-ease,
+    opacity $nav-transition-dur ease,
+    visibility 0s linear 0s; // instant visibility on open
 }
 
 %hidden {
   visibility: hidden;
-  opacity:    0;
+  opacity: 0;
 }
 
 %visible {
   visibility: visible;
-  opacity:    1;
+  opacity: 1;
 }
 
 %link-reset {
-  display:         block;
+  display: block;
   text-decoration: none;
-  border-radius:   $nav-radius;
+  border-radius: $nav-radius;
 }
 
 
 nav {
 
   // ── Top-level list ───────────────────────────────────
-  > ul {
-    list-style:  none;
-    padding:     0;
-    margin:      0;
-    display:     flex;
-    flex-wrap:   wrap;
+  >ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap:         var(--grid-gap);
+    gap: var(--grid-gap);
 
-    li { position: relative; }
+    li {
+      position: relative;
+    }
 
     // ── Top-level items ─────────────────────────────
-    > li {
+    >li {
 
-      > a {
+      >a {
         @extend %link-reset;
-        position:    relative;   // stacking context for ::before overlay
-        padding:     var(--sp-2) var(--sp-3);
-        color:       var(--nav-link-color);
+        position: relative; // stacking context for ::before overlay
+        padding: var(--sp-2) var(--sp-3);
+        color: var(--nav-link-color);
         font-weight: var(--fw-medium);
 
         // Icons inside nav links
         i {
-          font-size:  0.85em;
-          width:      1.1em;
+          font-size: 0.85em;
+          width: 1.1em;
           text-align: center;
-          color:      var(--nav-icon-color);
+          color: var(--nav-icon-color);
         }
 
         // Chevron arrow
         .nav-arrow {
-          font-size:      0.65em;
-          margin-left:    0.25em;
+          font-size: 0.65em;
+          margin-left: 0.25em;
           vertical-align: middle;
-          transition:     transform $nav-transition-dur $nav-transition-ease;
+          transition: transform $nav-transition-dur $nav-transition-ease;
         }
 
-        // ── Hover overlay (::before) ───────────────
-        //    scaleY(0) → scaleY(1); border + inset
-        //    shadow create the gradient-glow on border.
+
         &::before {
-          content:          '';
-          position:         absolute;
-          inset:            0;
-          border-radius:    $nav-radius;
-          background:       $overlay-bg;
-          border:           1px solid $overlay-border;
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: $nav-radius;
+          background: $overlay-bg;
+          border: 1px solid $overlay-border;
           box-shadow:
             inset 0 0 14px $overlay-shadow-1,
-            inset 0 0  4px $overlay-shadow-2;
-          transform:        scaleY(0);
+            inset 0 0 4px $overlay-shadow-2;
+          transform: scaleY(0);
           transform-origin: center;
-          transition:       transform 0.3s $nav-transition-ease;
+          transition: transform 0.3s $nav-transition-ease;
         }
 
-        &:hover::before { transform: scaleY(1); }
+        &:hover::before {
+          transform: scaleY(1);
+        }
       }
 
       // Rotate chevron when submenu is open
-      &:hover > a .nav-arrow { transform: rotate(180deg); }
+      &:hover>a .nav-arrow {
+        transform: rotate(180deg);
+      }
 
-      // ── Dropdown submenu ──────────────────────────
-      //    Scales from top-left corner on both axes.
-      > ul {
+
+      >ul {
         @extend %transition-scale;
         @extend %hidden;
 
-        display:          block;
-        position:         absolute;
-        top:              calc(100% + var(--sp-1));
-        left:             0;
-        min-width:        10rem;
-        background:       var(--nav-bg);
-        padding:          var(--sp-2);
-        border-radius:    $nav-submenu-radius;
-        border:           1px solid var(--nav-border);
-        box-shadow:       0 0.5rem 1.5rem $submenu-shadow;
-        z-index:          200;
-        transform:        scale(0);
+        display: block;
+        position: absolute;
+        top: calc(100% + var(--sp-1));
+        left: 0;
+        min-width: 10rem;
+        background: var(--nav-bg);
+        padding: var(--sp-2);
+        border-radius: $nav-submenu-radius;
+        border: 1px solid var(--nav-border);
+        box-shadow: 0 0.5rem 1.5rem $submenu-shadow;
+        z-index: 200;
+        transform: scale(0);
         transform-origin: top left;
 
         // ── Submenu links ──────────────────────────
         li a {
           @extend %link-reset;
-          padding:     var(--sp-2) var(--sp-3);
-          color:       var(--nav-text);
+          padding: var(--sp-2) var(--sp-3);
+          color: var(--nav-text);
           white-space: nowrap;
 
           i {
-            font-size:  0.85em;
-            width:      1.1em;
+            font-size: 0.85em;
+            width: 1.1em;
             text-align: center;
-            color:      var(--nav-icon-color);
+            color: var(--nav-icon-color);
           }
 
-          // ── Double underline built by @for loop ───
-          //    For each line index $i (1 … $underline-count):
-          //      • pick colour variable (line 1 vs line 2)
-          //      • set initial size to 0 width
-          //      • position at bottom (line 1) or above (line 2)
-          //    Results are collected with list.append() into
-          //    three separate lists and applied as multi-layer
-          //    background-image / background-size / background-position.
-          $images:    ();
-          $sizes:     ();
-          $positions: ();
+          $images: (
+          );
+        $sizes: (
+        );
+      $positions: (
+      );
 
-          @for $i from 1 through $underline-count {
-            // Colour: line 1 uses --nav-line-1, others use --nav-line-2
-            $color-var: '';
-            @if $i == 1 {
-              $color-var: 'var(--nav-line-1)';
-            } @else {
-              $color-var: 'var(--nav-line-2)';
-            }
+    @for $i from 1 through $underline-count {
+      // Colour: line 1 uses --nav-line-1, others use --nav-line-2
+      $color-var: '';
 
-            $images: list.append(
-              $images,
-              linear-gradient(#{$color-var}, #{$color-var}),
-              comma
-            );
-
-            $sizes: list.append(
-              $sizes,
-              0 $underline-thickness,
-              comma
-            );
-
-            // Position: line 1 sits at the very bottom;
-            // each subsequent line is $underline-gap higher.
-            $gap-offset: ($i - 1) * $underline-gap;
-            @if $gap-offset == 0 {
-              $positions: list.append($positions, 0 100%,                              comma);
-            } @else {
-              $positions: list.append($positions, 0 calc(100% - #{$gap-offset}),       comma);
-            }
-          }
-
-          background-image:    $images;
-          background-size:     $sizes;
-          background-position: $positions;
-          background-repeat:   no-repeat;
-          transition:          background-size 0.3s ease, color 0.2s ease;
-
-          // Hover: expand all lines to full width
-          &:hover {
-            color: var(--nav-link-hover-color);
-
-            $hover-sizes: ();
-            @for $i from 1 through $underline-count {
-              $hover-sizes: list.append(
-                $hover-sizes,
-                100% $underline-thickness,
-                comma
-              );
-            }
-            background-size: $hover-sizes;
-          }
-        }
+      @if $i ==1 {
+        $color-var: 'var(--nav-line-1)';
       }
 
-      // Open state on parent li hover
-      &:hover > ul {
-        @extend %transition-scale-open;
-        @extend %visible;
-        transform: scale(1);
+      @else {
+        $color-var: 'var(--nav-line-2)';
       }
 
-    } // > li
-  } // > ul
-} // nav
+      $images: list.append($images,
+          linear-gradient(#{$color-var}, #{$color-var}),
+          comma);
+
+      $sizes: list.append($sizes,
+          0 $underline-thickness,
+          comma);
+
+      // Position: line 1 sits at the very bottom;
+      // each subsequent line is $underline-gap higher.
+      $gap-offset: (
+        $i - 1) * $underline-gap;
+
+      @if $gap-offset ==0 {
+        $positions: list.append($positions, 0 100%, comma
+        );
+    }
+
+    @else {
+      $positions: list.append($positions, 0 calc(100% - #{$gap-offset}), comma);
+    }
+  }
+
+  background-image: $images;
+  background-size: $sizes;
+  background-position: $positions;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease,
+  color 0.2s ease;
+
+  // Hover: expand all lines to full width
+  &:hover {
+    color: var(--nav-link-hover-color);
+
+    $hover-sizes: (
+    );
+
+  @for $i from 1 through $underline-count {
+    $hover-sizes: list.append($hover-sizes,
+        100% $underline-thickness,
+        comma);
+  }
+
+  background-size: $hover-sizes;
+}
+}
+}
+
+// Open state on parent li hover
+&:hover>ul {
+  @extend %transition-scale-open;
+  @extend %visible;
+  transform: scale(1);
+}
+
+}
+}
+}
 
 
-// ─────────────────────────────────────────────────────────────
+// 
 // GLOBAL — checkbox & label helpers
-// ─────────────────────────────────────────────────────────────
+// 
 
 // Always hide the actual checkboxes (still functional via <label>)
 .nav-check,
 .sub-check {
-  display:  none;
+  display: none;
   position: absolute;
 }
 
@@ -266,33 +261,33 @@ nav {
 
 // Hamburger label: hidden on large / medium screens
 .nav-toggle {
-  display:         none;
-  align-items:     center;
+  display: none;
+  align-items: center;
   justify-content: center;
-  position:        relative;
-  background:      var(--nav-bg);
-  border:          1px solid var(--nav-border);
-  border-radius:   $nav-radius;
-  color:           var(--nav-text);
-  width:           2.6rem;
-  height:          2.6rem;
-  cursor:          pointer;
+  position: relative;
+  background: var(--nav-bg);
+  border: 1px solid var(--nav-border);
+  border-radius: $nav-radius;
+  color: var(--nav-text);
+  width: 2.6rem;
+  height: 2.6rem;
+  cursor: pointer;
   transition:
     background $nav-transition-dur ease,
-    color      $nav-transition-dur ease;
+    color $nav-transition-dur ease;
 
   // How: build hamburger with 3 absolute bars (span elements).
   // Why: this satisfies the requirement to create the icon in CSS/HTML, not as an image/icon font.
   .burger-line {
-    position:         absolute;
-    left:             50%;
-    width:            1.25rem;
-    height:           0.16rem;
-    border-radius:    999px;
+    position: absolute;
+    left: 50%;
+    width: 1.25rem;
+    height: 0.16rem;
+    border-radius: 999px;
     background-color: #7dd3fc;
-    transform:        translate(-50%, -50%) scaleX(1);
-    opacity:          0.95;
-    box-shadow:       0 0 0.32rem rgba(56, 189, 248, 0.5);
+    transform: translate(-50%, -50%) scaleX(1);
+    opacity: 0.95;
+    box-shadow: 0 0 0.32rem rgba(56, 189, 248, 0.5);
   }
 
   @for $i from 1 through $burger-line-count {
@@ -302,21 +297,32 @@ nav {
   }
 
   &:hover {
-    background:   #{$overlay-bg};
-    color:        var(--nav-link-color);
+    background: #{$overlay-bg};
+    color: var(--nav-link-color);
     border-color: #{$overlay-border};
   }
 }
 
 
 @media (max-width: 1024px) {
-  nav > ul { gap: var(--sp-2); }
+  nav>ul {
+    gap: var(--sp-2);
+  }
 
-  nav > ul > li > a {
+  nav>ul>li>a {
     padding: var(--sp-2) var(--sp-3);
-    .nav-label { display: none; }
-    .nav-arrow { display: none; }
-    i          { font-size: 1.15rem; }
+
+    .nav-label {
+      display: none;
+    }
+
+    .nav-arrow {
+      display: none;
+    }
+
+    i {
+      font-size: 1.15rem;
+    }
   }
 }
 
@@ -325,11 +331,11 @@ nav {
 
   // ── Show hamburger label as fixed button ───────────────────
   .nav-toggle {
-    display:  flex;
+    display: flex;
     position: fixed;
-    top:      var(--sp-3, 0.75rem);
-    left:     var(--sp-3, 0.75rem);
-    z-index:  1001;
+    top: var(--sp-3, 0.75rem);
+    left: var(--sp-3, 0.75rem);
+    z-index: 1001;
     background: rgba(2, 6, 23, 0.7);
     border: 1px solid rgba(56, 189, 248, 0.35);
     box-shadow: 0 10px 24px rgba(2, 6, 23, 0.45);
@@ -338,10 +344,10 @@ nav {
   // How: animate each bar when small-screen hamburger appears.
   // Why: requirement asks color + geometric transform + opacity with >=3 keyframes.
   .nav-toggle .burger-line {
-    animation-name:            burger-appear;
-    animation-duration:        0.72s;
+    animation-name: burger-appear;
+    animation-duration: 4ms;
     animation-timing-function: $nav-transition-ease;
-    animation-fill-mode:       both;
+    animation-fill-mode: both;
   }
 
   // How: stagger delays generated with SASS @for.
@@ -354,69 +360,68 @@ nav {
 
   // ── Nav overlay: hidden by default ────────────────────────
   nav {
-    position:        fixed;
-    inset:           0;
-    background:      radial-gradient(circle at top, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.98));
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.98));
     backdrop-filter: blur(8px);
-    z-index:         1000;
-    display:         flex;
-    flex-direction:  column;
-    align-items:     center;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: flex-start;
-    overflow-y:      auto;
-    padding-top:     5rem;
-    opacity:         0;
-    visibility:      hidden;
-    pointer-events:  none;
+    overflow-y: auto;
+    padding-top: 5rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     // !important beats the small-screen kill-all in main.css:
     // any named selector (nav = 0,0,0,1) > universal * (0,0,0,0)
     // when both carry !important, higher specificity wins.
     transition:
-      opacity    0.28s $nav-transition-ease,
-      visibility 0s   linear 0.28s !important;
+      opacity 0.28s $nav-transition-ease,
+      visibility 0s linear 0.28s !important;
   }
 
   // ── Open: hover over the toggle label OR checkbox checked ──
-  .nav-toggle:hover ~ nav,
-  #nav-check:checked ~ nav,
+  .nav-toggle:hover~nav,
+  #nav-check:checked~nav,
   nav:hover {
-    opacity:        1;
-    visibility:     visible;
+    opacity: 1;
+    visibility: visible;
     pointer-events: auto;
-    transition:     opacity 0.28s $nav-transition-ease !important;
+    transition: opacity 0.28s $nav-transition-ease !important;
   }
 
   // ── Vertical item list ─────────────────────────────────────
-  nav > ul {
+  nav>ul {
     flex-direction: column;
-    align-items:    stretch;
-    gap:            var(--sp-2, 0.5rem);
-    width:          min(23rem, 90vw);
-    padding:        0 0 var(--sp-8, 2rem);
+    align-items: stretch;
+    gap: var(--sp-2, 0.5rem);
+    width: min(23rem, 90vw);
+    padding: 0 0 var(--sp-8, 2rem);
 
-    li { position: static; }
+    li {
+      position: static;
+    }
 
     // ── Top-level items ──────────────────────────────────────
-    > li {
-      display:       flex;
-      flex-wrap:     wrap;
-      align-items:   center;
+    >li {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       border-radius: $nav-submenu-radius;
-      background:    linear-gradient(180deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.9));
-      border:        1px solid rgba(125, 211, 252, 0.2);
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(125, 211, 252, 0.2);
       box-shadow:
         inset 0 1px 0 rgba(148, 163, 184, 0.28),
         0 10px 18px rgba(2, 6, 23, 0.45);
       margin-bottom: 0.45rem;
 
       // Default: clipped (invisible) until nav opens
-      opacity:   0;
+      opacity: 0;
       clip-path: polygon(0% 0%, 0% 0%, 0% 50%, 0% 100%, 0% 100%);
 
-      // Staggered reveal delays — !important needed so these
-      // override the kill-all in main.css
-      // nav > ul > li:nth-child(n) has specificity 0,0,1,3
-      // which beats * (0,0,0,0) when both carry !important
+
       @for $i from 1 through 8 {
         &:nth-child(#{$i}) {
           animation-delay: #{($i - 1) * 0.07}s !important;
@@ -424,100 +429,117 @@ nav {
       }
 
       // ── Main link ────────────────────────────────────────
-      > a {
-        display:       flex;
-        align-items:   center;
-        gap:           var(--sp-3, 0.75rem);
-        padding:       var(--sp-4, 1rem) var(--sp-5, 1.25rem);
-        font-size:     1.05rem;
-        color:         #e2e8f0;
-        flex:          1;
+      >a {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-3, 0.75rem);
+        padding: var(--sp-4, 1rem) var(--sp-5, 1.25rem);
+        font-size: 1.05rem;
+        color: #e2e8f0;
+        flex: 1;
         border-radius: $nav-submenu-radius;
-        text-shadow:   0 1px 4px rgba(2, 6, 23, 0.45);
-        transition:    background 0.2s ease, color 0.2s ease !important;
+        text-shadow: 0 1px 4px rgba(2, 6, 23, 0.45);
+        transition: background 0.2s ease, color 0.2s ease !important;
 
-        &::before { display: none; } // no desktop overlay on mobile
+        &::before {
+          display: none;
+        }
+
+        // no desktop overlay on mobile
 
         .nav-label {
           display: inline;
-          flex:    1;
+          flex: 1;
         }
 
-        .nav-arrow { display: none; } // sub-toggle-btn handles expand indicator
+        .nav-arrow {
+          display: none;
+        }
+
+        // sub-toggle-btn handles expand indicator
 
         i {
-          font-size:  1rem;
-          width:      1.2em;
+          font-size: 1rem;
+          width: 1.2em;
           flex-shrink: 0;
-          color:       #7dd3fc;
+          color: #7dd3fc;
         }
 
         &:hover {
           background: rgba(56, 189, 248, 0.12);
-          color:      #f8fafc;
+          color: #f8fafc;
         }
       }
 
       // ── Sub-toggle button (chevron label) ─────────────────
-      > .sub-toggle-btn {
-        display:         flex;
-        align-items:     center;
+      >.sub-toggle-btn {
+        display: flex;
+        align-items: center;
         justify-content: center;
-        width:           2.8rem;
-        height:          2.8rem;
-        cursor:          pointer;
-        color:           #e2e8f0;
-        flex-shrink:     0;
-        border-radius:   $nav-submenu-radius;
-        transition:      background 0.2s ease;
+        width: 2.8rem;
+        height: 2.8rem;
+        cursor: pointer;
+        color: #e2e8f0;
+        flex-shrink: 0;
+        border-radius: $nav-submenu-radius;
+        transition: background 0.2s ease;
 
         i {
-          font-size:  0.75rem;
+          font-size: 0.75rem;
           transition: transform $nav-transition-dur $nav-transition-ease !important;
         }
 
-        &:hover { background: rgba(56, 189, 248, 0.12); }
+        &:hover {
+          background: rgba(56, 189, 248, 0.12);
+        }
       }
 
       // Rotate chevron when its sub-check is checked
       // .sub-check + .sub-toggle-btn (adjacent sibling)
-      > .sub-check:checked + .sub-toggle-btn i { transform: rotate(180deg); }
+      >.sub-check:checked+.sub-toggle-btn i {
+        transform: rotate(180deg);
+      }
 
       // ── Home (first item): icon only, centered ─────────────
-      &:first-child > a {
+      &:first-child>a {
         justify-content: center;
-        .nav-label { display: none; }
+
+        .nav-label {
+          display: none;
+        }
       }
-      &:first-child > .sub-toggle-btn { display: none; }
+
+      &:first-child>.sub-toggle-btn {
+        display: none;
+      }
 
       // ── Mobile submenu: accordion ──────────────────────────
-      > ul {
-        position:      static !important;
-        visibility:    visible !important;
-        opacity:       1 !important;
-        transform:     none !important;
-        max-height:    0;
-        overflow:      hidden;
-        padding:       0 var(--sp-2, 0.5rem);
-        margin:        0;
-        width:         100%;
-        flex-basis:    100%;
-        background:    rgba(2, 6, 23, 0.4);
-        border:        1px solid rgba(56, 189, 248, 0.18);
+      >ul {
+        position: static !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 var(--sp-2, 0.5rem);
+        margin: 0;
+        width: 100%;
+        flex-basis: 100%;
+        background: rgba(2, 6, 23, 0.4);
+        border: 1px solid rgba(56, 189, 248, 0.18);
         border-radius: 0 0 $nav-submenu-radius $nav-submenu-radius;
-        box-shadow:    none !important;
-        z-index:       auto !important;
+        box-shadow: none !important;
+        z-index: auto !important;
         transition:
           max-height 0.35s $nav-transition-ease,
-          padding    0.35s $nav-transition-ease
-          !important;
+          padding 0.35s $nav-transition-ease !important;
 
         li a {
           justify-content: flex-start;
-          font-size:       0.95rem;
-          padding:         var(--sp-3, 0.75rem) var(--sp-4, 1rem);
-          white-space:     normal;
-          color:           #cbd5e1;
+          font-size: 0.95rem;
+          padding: var(--sp-3, 0.75rem) var(--sp-4, 1rem);
+          white-space: normal;
+          color: #cbd5e1;
 
           i {
             color: #38bdf8;
@@ -531,78 +553,78 @@ nav {
       }
 
       // Submenu open: hover over parent item OR checkbox checked
-      > .sub-check:checked ~ ul,
-      &:hover > ul {
+      >.sub-check:checked~ul,
+      &:hover>ul {
         visibility: visible !important;
-        opacity:    1 !important;
-        transform:  none !important;
+        opacity: 1 !important;
+        transform: none !important;
         max-height: 30rem !important;
-        padding:    var(--sp-2, 0.5rem) !important;
+        padding: var(--sp-2, 0.5rem) !important;
       }
 
       // Rotate sub-toggle chevron when its submenu is open
-      &:hover > .sub-toggle-btn i { transform: rotate(180deg); }
+      &:hover>.sub-toggle-btn i {
+        transform: rotate(180deg);
+      }
 
-    } // > li
-  } // nav > ul
+    }
 
-  // ── Trigger clip-path animation on open (hover OR checked) ──
-  // Use individual sub-properties (NOT the animation shorthand)
-  // so that animation-delay is NOT reset to 0s here — the
-  // nth-child !important delays above stay in effect.
-  // Specificity of these selectors (min 0,0,1,3) > * (0,0,0,0)
-  // so !important here beats the kill-all in main.css.
-  .nav-toggle:hover ~ nav > ul > li,
-  #nav-check:checked ~ nav > ul > li,
-  nav:hover > ul > li {
-    animation-name:            nav-item-appear !important;
-    animation-duration:        0.42s           !important;
-    animation-timing-function: $nav-transition-ease !important;
-    animation-fill-mode:       forwards        !important;
-    animation-iteration-count: 1               !important;
-    animation-play-state:      running         !important;
+    // > li
   }
 
-  // ── Arrow-shaped clip-path reveal ──────────────────────────
-  //    0%  : collapsed (zero width at left edge)
-  //    55% : chevron / arrow pointing right
-  //    100%: full rectangle
+  .nav-toggle:hover~nav>ul>li,
+  #nav-check:checked~nav>ul>li,
+  nav:hover>ul>li {
+    animation-name: nav-item-appear !important;
+    animation-duration: 0.42s !important;
+    animation-timing-function: $nav-transition-ease !important;
+    animation-fill-mode: forwards !important;
+    animation-iteration-count: 1 !important;
+    animation-play-state: running !important;
+  }
+
+
   @keyframes nav-item-appear {
     0% {
-      opacity:   0;
-      clip-path: polygon(0% 0%,  0%   0%,  0%    50%,  0%   100%,  0%   100%);
+      opacity: 0;
+      clip-path: polygon(0% 0%, 0% 0%, 0% 50%, 0% 100%, 0% 100%);
     }
+
     55% {
-      opacity:   1;
-      clip-path: polygon(0% 0%,  72%  0%,  100%  50%,  72%  100%,  0%   100%);
+      opacity: 1;
+      clip-path: polygon(0% 0%, 72% 0%, 100% 50%, 72% 100%, 0% 100%);
     }
+
     100% {
-      opacity:   1;
-      clip-path: polygon(0% 0%,  100% 0%,  100%  50%,  100% 100%,  0%   100%);
+      opacity: 1;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 100% 100%, 0% 100%);
     }
   }
 
   @keyframes burger-appear {
     0% {
       background-color: #0f172a;
-      transform:        translate(-50%, -50%) scaleX(0.35) rotate(-14deg);
-      opacity:          0.1;
+      transform: translate(-50%, -50%) scaleX(0.35) rotate(-14deg);
+      opacity: 0.1;
     }
+
     45% {
       background-color: #38bdf8;
-      transform:        translate(-50%, -50%) scaleX(1.22) rotate(8deg);
-      opacity:          0.7;
+      transform: translate(-50%, -50%) scaleX(1.22) rotate(8deg);
+      opacity: 0.7;
     }
+
     75% {
       background-color: #7dd3fc;
-      transform:        translate(-50%, -50%) scaleX(0.9) rotate(-4deg);
-      opacity:          0.95;
+      transform: translate(-50%, -50%) scaleX(0.9) rotate(-4deg);
+      opacity: 0.95;
     }
+
     100% {
       background-color: #e0f2fe;
-      transform:        translate(-50%, -50%) scaleX(1) rotate(0deg);
-      opacity:          1;
+      transform: translate(-50%, -50%) scaleX(1) rotate(0deg);
+      opacity: 1;
     }
   }
 
-} // @media (max-width: 640px)
+}
