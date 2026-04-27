@@ -1,7 +1,8 @@
 {
   "eroare_default": {
     "titlu": "Unexpected error",
-    "text": "Sorry, unexpected error occured."
+    "text": "Sorry, unexpected error occured.",
+    "imagine":"/resourses/images/unexpected.png"
   },
   "info_erori": [
     {

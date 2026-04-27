@@ -10,6 +10,50 @@ for (let folder of vect_foldere) {
     }
 }
 
+function verificaFisierErori() {
+    const eroriPath = path.join(__dirname, "erori.json");
+
+    if (!fs.existsSync(eroriPath)) {
+        console.error("ERROR: erori.json file is missing.");
+        console.error("Server cannot start without it.");
+        process.exit(1);
+    }
+
+    const raw = fs.readFileSync(eroriPath, "utf-8");
+    const data = JSON.parse(raw);
+
+    if (!data.info_erori) {
+        console.error("ERROR: Missing property 'info_erori' in erori.json.");
+        process.exit(1);
+    }
+
+    if (!data.cale_baza) {
+        console.error("ERROR: Missing property 'cale_baza' in erori.json.");
+        process.exit(1);
+    }
+
+    if (!data.eroare_default) {
+        console.error("ERROR: Missing property 'eroare_default' in erori.json.");
+        process.exit(1);
+    }
+
+
+    if (!data.eroare_default.titlu) {
+    console.error("ERROR: Missing 'titlu' in eroare_default.");
+    process.exit(1);
+    }
+
+    if (!data.eroare_default.text) {
+        console.error("ERROR: Missing 'text' in eroare_default.");
+        process.exit(1);
+    }
+
+    if (!data.eroare_default.imagine) {
+        console.error("ERROR: Missing 'imagine' in eroare_default.");
+        process.exit(1);
+    }
+}
+
 global.obGlobal = { obErori: null };
 
 app = express();
@@ -24,6 +68,7 @@ function initErori() {
     obGlobal.obErori = data;
 }
 
+verificaFisierErori();
 initErori();
 
 function afisareEroare(res, identificator = null, titlu = null, text = null) {
