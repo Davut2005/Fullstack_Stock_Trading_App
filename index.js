@@ -5,16 +5,16 @@ app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-console.log("Folder: index.js", __dirname);
-console.log("Folder current", process)
+app.use('/resourses', express.static(path.join(__dirname, 'resourses')));
+app.use(express.static(path.join(__dirname, 'resourses')));
 
-app.get("/cale", function(req, res){
-    res.sendFile(path.join(__dirname, "index.html"))
+console.log("Current folder is:", __dirname);
+console.log("Current file is:", __filename);
+console.log("the folder, where the server was started from:", process.cwd());
 
-})
+
+app.get(["/", "/index", "/home"], function (req, res) {
+    res.render("pagini/index");
+});
 
 app.listen(8080)
-
-app.get("/", (req, res) => {
-    res.render("/pagini/index")
-});
