@@ -1,0 +1,20 @@
+{
+  "eroare_default": {
+    "titlu": "Unexpected error",
+    "text": "Sorry, unexpected error occured."
+  },
+  "info_erori": [
+    {
+      "identificator": 404,
+      "status": true,
+      "titlu": "Page not found",
+      "text": "Sorry, page not found."
+    },
+    {
+      "identificator": 500,
+      "status": true,
+      "titlu": "Server error",
+      "text": "Sorry, server error."
+    }
+  ]
+}
