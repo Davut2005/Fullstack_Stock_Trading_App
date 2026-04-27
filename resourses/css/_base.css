@@ -83,3 +83,47 @@ footer a {
   font-family: "Delius Swash Caps", cursive;
   font-size: 1.2rem;
 }
+
+
+video {
+  width: 80%;
+  min-width: 300px;
+  max-width: 900px;
+  display: block;
+  margin: auto;
+}
+
+::cue {
+  background: rgba(255, 255, 255, 0.3);
+  color: #111;
+}
+
+a {
+  color: var(--color-link);
+}
+
+a:visited {
+  color: var(--color-visited);
+}
+
+a[href^="http"]::before {
+  content: "⮳ ";
+  font-size: 1.5em;
+}
+
+a[href^="http"]:hover::before {
+  color: var(--color-em);
+}
+
+main a {
+  background-image: radial-gradient(circle, var(--color-c1) 0%, var(--color-c1) 40%, transparent 80%, transparent 100%);
+  background-position: center;
+  background-size: 0%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease;
+}
+
+main a:hover {
+  background-size: 100%;
+  text-decoration: underline;
+}

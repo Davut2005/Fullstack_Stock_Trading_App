@@ -11,6 +11,18 @@
       "text": "Sorry, page not found."
     },
     {
+      "identificator": 400,
+      "status": true,
+      "titlu": "Bad Request",
+      "text": "Direct access to EJS template files is not allowed."
+    },
+    {
+      "identificator": 403,
+      "status": true,
+      "titlu": "Forbidden",
+      "text": "Access to this resource is forbidden."
+    },
+    {
       "identificator": 500,
       "status": true,
       "titlu": "Server error",

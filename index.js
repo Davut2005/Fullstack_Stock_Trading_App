@@ -2,6 +2,14 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 
+const vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"];
+for (let folder of vect_foldere) {
+    const folderPath = path.join(__dirname, folder);
+    if (!fs.existsSync(folderPath)) {
+        fs.mkdirSync(folderPath);
+    }
+}
+
 global.obGlobal = { obErori: null };
 
 app = express();
@@ -37,6 +45,23 @@ function afisareEroare(res, identificator = null, titlu = null, text = null) {
     res.status(statusCode).render('error', { titlu: finalTitlu, text: finalText });
 }
 
+app.use((req, res, next) => {
+    if (req.path.endsWith('.ejs')) {
+        afisareEroare(res, 400);
+    } else {
+        next();
+    }
+});
+
+app.use("/resourses", (req, res, next) => {
+    const requestedPath = path.join(__dirname, "resourses", req.path);
+
+    if (fs.existsSync(requestedPath) && fs.lstatSync(requestedPath).isDirectory()) {
+        afisareEroare(res, 403);
+    } else {
+        next();
+    }
+});
 
 app.use('/resourses', express.static(path.join(__dirname, 'resourses')));
 app.use(express.static(path.join(__dirname, 'resourses')));
@@ -50,6 +75,10 @@ console.log("the folder, where the server was started from:", process.cwd());
 app.use((req, res, next) => {
     res.locals.ip = req.ip;
     next();
+});
+
+app.get('/favicon.ico', (req, res) => {
+    res.sendFile(path.join(__dirname, 'resourses', 'ico', 'favicon.ico'));
 });
 
 app.get(["/", "/index", "/home"], function (req, res) {
