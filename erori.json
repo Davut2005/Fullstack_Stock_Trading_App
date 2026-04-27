@@ -8,25 +8,29 @@
       "identificator": 404,
       "status": true,
       "titlu": "Page not found",
-      "text": "Sorry, page not found."
+      "text": "Sorry, page not found.",
+      "imagine": "/resourses/images/404.jpg"
     },
     {
       "identificator": 400,
       "status": true,
       "titlu": "Bad Request",
-      "text": "Direct access to EJS template files is not allowed."
+      "text": "Direct access to EJS template files is not allowed.",
+      "imagine": "/resourses/images/400.png"
     },
     {
       "identificator": 403,
       "status": true,
       "titlu": "Forbidden",
-      "text": "Access to this resource is forbidden."
+      "text": "Access to this resource is forbidden.",
+      "imagine": "/resourses/images/403.jpg"
     },
     {
       "identificator": 500,
       "status": true,
       "titlu": "Server error",
-      "text": "Sorry, server error."
+      "text": "Sorry, server error.",
+      "imagine": "/resourses/images/500.jpg"
     }
   ]
 }

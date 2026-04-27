@@ -38,11 +38,17 @@ function afisareEroare(res, identificator = null, titlu = null, text = null) {
     }
     const finalTitlu = titlu || entry.titlu;
     const finalText = text || entry.text;
+    const finalImagine = entry.imagine;
+
     let statusCode = 200;
     if (entry.status) {
         statusCode = identificator;
     }
-    res.status(statusCode).render('error', { titlu: finalTitlu, text: finalText });
+    res.status(statusCode).render('error', { 
+    titlu: finalTitlu, 
+    text: finalText,
+    imagine: finalImagine
+});
 }
 
 app.use((req, res, next) => {
