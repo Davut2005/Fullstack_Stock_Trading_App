@@ -46,22 +46,28 @@ console.log("Current file is:", __filename);
 console.log("the folder, where the server was started from:", process.cwd());
 
 
+// Middleware for global variables (e.g., user IP)
+app.use((req, res, next) => {
+    res.locals.ip = req.ip;
+    next();
+});
+
 app.get(["/", "/index", "/home"], function (req, res) {
     res.render("pagini/index");
 });
 
-app.get('/*', (req, res) => {
+app.get('/*pagina', function (req, res) {
     const page = req.path.substring(1);
     const view = `pagini/${page}`;
-    res.render(view, err => {
-        if (err) {
-            if (err.message && err.message.startsWith('Failed to lookup view')) {
-                // Missing view -> 404 error
+    res.render(view, function (eroare, rezultatRandare) {
+        if (eroare) {
+            if (eroare.message && eroare.message.startsWith('Failed to lookup view')) {
                 afisareEroare(res, 404);
             } else {
-                // Other render errors -> generic error
                 afisareEroare(res);
             }
+        } else {
+            res.send(rezultatRandare);
         }
     });
 });

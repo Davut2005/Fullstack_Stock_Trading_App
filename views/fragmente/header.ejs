@@ -1,20 +1,59 @@
 <header id="top">
+    <input type="checkbox" id="nav-check" class="nav-check">
+    <label for="nav-check" class="nav-toggle" aria-label="Toggle menu">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+    </label>
+
     <h1>Davidious Stock Trading Platform</h1>
 
     <nav>
         <ul>
+
             <li>
-                <a href="index.html">Home</a>
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#stocks">Stocks</a></li>
-                        <li><a href="#learn">Learn</a></li>
-                    </ul>
+                <a href="index.html">
+                    <i class="fa-solid fa-house"></i><span class="nav-label"> Home</span>
+                    <i class="fa-solid fa-chevron-down nav-arrow"></i>
+                </a>
+                <input type="checkbox" id="sub-home" class="sub-check">
+                <label for="sub-home" class="sub-toggle-btn" aria-label="Expand Home submenu">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </label>
+                <ul>
+                    <li><a href="/about"><i class="fa-solid fa-circle-info"></i> About</a></li>
+                    <li><a href="#stocks"><i class="fa-solid fa-chart-line"></i> Top Stocks</a></li>
+                    <li><a href="#learn"><i class="fa-solid fa-graduation-cap"></i> Learn</a></li>
+                    <li><a href="#events"><i class="fa-solid fa-calendar-days"></i> Events</a></li>
+                    <li><a href="#contacts"><i class="fa-solid fa-envelope"></i> Contacts</a></li>
+                </ul>
             </li>
-            <li><a href="#profile">Stocks</a></li>
-            <li><a href="#Why_Davidious">Why Davidious</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#contacts">Contacts</a></li>
+
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-briefcase"></i><span class="nav-label"> Trading Tools</span>
+                    <i class="fa-solid fa-chevron-down nav-arrow"></i>
+                </a>
+                <input type="checkbox" id="sub-tools" class="sub-check">
+                <label for="sub-tools" class="sub-toggle-btn" aria-label="Expand Trading Tools submenu">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </label>
+                <ul>
+                    <li><a href="analysis.html"><i class="fa-solid fa-magnifying-glass-chart"></i> Market Analysis</a>
+                    </li>
+                    <li><a href="portfolio.html"><i class="fa-solid fa-wallet"></i> Portfolio Manager</a></li>
+                    <li><a href="history.html"><i class="fa-solid fa-clock-rotate-left"></i> Trade History</a></li>
+                    <li><a href="trading.html"><i class="fa-solid fa-bolt"></i> Live Trading</a></li>
+                    <li><a href="alerts.html"><i class="fa-solid fa-bell"></i> Price Alerts</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#Why_Davidious"><i class="fa-solid fa-shield-halved"></i><span class="nav-label"> Why
+                        Davidious</span></a></li>
+            <li><a href="#events"><i class="fa-solid fa-calendar-days"></i><span class="nav-label"> Events</span></a>
+            </li>
+            <li><a href="#contacts"><i class="fa-solid fa-phone"></i><span class="nav-label"> Contacts</span></a></li>
+
         </ul>
     </nav>
 </header>

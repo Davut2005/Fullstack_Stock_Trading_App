@@ -1,0 +1,36 @@
+/* Styling specific to the About Us page */
+
+.about-page-container {
+    background: var(--bg-section);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    padding: var(--sp-6) var(--sp-5);
+    box-shadow: var(--shadow);
+    color: var(--text-main);
+    max-width: 800px;
+    margin: var(--sp-6) auto;
+    text-align: center;
+}
+
+.about-title {
+    font-family: "Delius Swash Caps", cursive;
+    font-size: 2.5rem;
+    margin-bottom: var(--sp-4);
+    color: var(--accent-color, #4a90e2);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: var(--sp-3);
+    display: inline-block;
+}
+
+.about-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.about-content p {
+    margin-bottom: var(--sp-3);
+}
+
+.about-content p:last-child {
+    margin-bottom: 0;
+}
