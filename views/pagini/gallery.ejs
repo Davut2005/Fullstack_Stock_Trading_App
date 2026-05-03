@@ -1,0 +1,15 @@
+<div class="galerie">
+    <% images.forEach((img, i)=> { %>
+        <figure>
+            <picture>
+                <source media="(max-width: 600px)" srcset="<%= path %>/small/<%= img.relative_path %>">
+                <source media="(max-width: 1000px)" srcset="<%= path %>/medium/<%= img.relative_path %>">
+                <img src="<%= path %>/<%= img.relative_path %>" alt="<%= img.   alt || img.name %>"
+                    title="<%= img.description %>">
+            </picture>
+            <figcaption>
+                <%= img.description %>
+            </figcaption>
+        </figure>
+        <% }) %>
+</div>

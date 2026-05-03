@@ -1,0 +1,11 @@
+{
+    "gallery_path": "/resourses/images/gallery",
+    "images": [
+        {
+            "relative_path": "img1.jpg",
+            "name": "Sunrise",
+            "description": "Morning view",
+            "time": "dimineata"
+        }
+    ]
+}

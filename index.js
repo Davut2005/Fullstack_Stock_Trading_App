@@ -10,6 +10,23 @@ for (let folder of vect_foldere) {
     }
 }
 
+let gallery = JSON.parse(fs.readFileSync("gallery.json"));
+
+function getImagesByTime() {
+    const hour = new Date().getHours();
+
+    let period =
+        hour >= 5 && hour < 12 ? "dimineata" :
+            hour >= 12 && hour < 20 ? "zi" :
+                "noapte";
+
+    let imgs = gallery.images.filter(img => img.time === period);
+
+    imgs = imgs.slice(0, imgs.length - (imgs.length % 3));
+
+    return imgs;
+}
+
 function verificaFisierErori() {
     const eroriPath = path.join(__dirname, "erori.json");
 
@@ -39,8 +56,8 @@ function verificaFisierErori() {
 
 
     if (!data.eroare_default.titlu) {
-    console.error("ERROR: Missing 'titlu' in eroare_default.");
-    process.exit(1);
+        console.error("ERROR: Missing 'titlu' in eroare_default.");
+        process.exit(1);
     }
 
     if (!data.eroare_default.text) {
@@ -61,10 +78,9 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 function initErori() {
-    const eroriPath = path.join(__dirname, "erori.json");
+    const eroriPath = path.join(__dirname, "resourses/json/erori.json");
     const raw = fs.readFileSync(eroriPath, "utf-8");
     const data = JSON.parse(raw);
-    // No image handling needed; keep data as is
     obGlobal.obErori = data;
 }
 
@@ -89,11 +105,11 @@ function afisareEroare(res, identificator = null, titlu = null, text = null) {
     if (entry.status) {
         statusCode = identificator;
     }
-    res.status(statusCode).render('error', { 
-    titlu: finalTitlu, 
-    text: finalText,
-    imagine: finalImagine
-});
+    res.status(statusCode).render('error', {
+        titlu: finalTitlu,
+        text: finalText,
+        imagine: finalImagine
+    });
 }
 
 app.use((req, res, next) => {
@@ -132,14 +148,17 @@ app.get('/favicon.ico', (req, res) => {
     res.sendFile(path.join(__dirname, 'resourses', 'ico', 'favicon.ico'));
 });
 
-app.get(["/", "/index", "/home"], function (req, res) {
-    res.render("pagini/index");
+app.get(["/", "/index", "/home"], (req, res) => {
+    res.render("pagini/index", {
+        images: getImagesByTime(),
+        path: gallery.gallery_path
+    });
 });
 
-app.get('/*pagina', function (req, res) {
+app.get('/*page', function (req, res) {
     const page = req.path.substring(1);
     const view = `pagini/${page}`;
-    res.render(view, function (eroare, rezultatRandare) {
+    res.render(view, { images: getImagesByTime(), path: gallery.gallery_path }, function (eroare, rezultatRandare) {
         if (eroare) {
             if (eroare.message && eroare.message.startsWith('Failed to lookup view')) {
                 afisareEroare(res, 404);
