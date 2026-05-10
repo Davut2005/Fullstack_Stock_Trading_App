@@ -17,9 +17,9 @@ function getImagesByTime() {
     const hour = new Date().getHours();
 
     let period =
-        hour >= 5 && hour < 12 ? "dimineata" :
-            hour >= 12 && hour < 20 ? "zi" :
-                "noapte";
+        hour >= 5 && hour < 12 ? "morning" :
+            hour >= 12 && hour < 20 ? "afternoon" :
+                "evening";
 
     let imgs = gallery.images.filter(img => img.time === period);
 

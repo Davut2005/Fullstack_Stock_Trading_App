@@ -32,14 +32,14 @@
             "time": "morning"
         },
         {
-            "relative_path": "img6.jpg",
-            "name": "Finance Chart",
-            "description": "Financial market graph",
+            "relative_path": "img6.png",
+            "name": "Fibanacci Chart",
+            "description": "Fibanaci market graph",
             "time": "evening",
 
-            "licenta": "CCO 1.0",
-            "autor": "Bezeeta444",
-            "sursa": "https://commons.wikimedia.org/wiki/File:Testing_analytic.jpg"
+            "licenta": "CC BY-SA 4.0",
+            "autor": "Bullsarena",
+            "sursa": "https://commons.wikimedia.org/wiki/File:Chart_fibonacci.png"
         }
     ]
 }
