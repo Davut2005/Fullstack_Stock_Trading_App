@@ -11,7 +11,7 @@ for (let folder of vect_foldere) {
     }
 }
 
-let gallery = JSON.parse(fs.readFileSync("gallery.json"));
+let gallery = JSON.parse(fs.readFileSync("resourses/json/gallery.json"));
 
 function getImagesByTime() {
     const hour = new Date().getHours();
@@ -29,13 +29,13 @@ function getImagesByTime() {
 }
 
 function generateResizedImages() {
-    const basePath = gallery.cale_galerie;
+    const basePath = gallery.gallery_path;
 
-    gallery.imagini.forEach(img => {
-        const inputPath = path.join(basePath, img.cale_relativa);
+    gallery.images.forEach(img => {
+        const inputPath = path.join(basePath, img.relative_path);
 
-        const smallPath = path.join(basePath, "small", img.cale_relativa);
-        const mediumPath = path.join(basePath, "medium", img.cale_relativa);
+        const smallPath = path.join(basePath, "small", img.relative_path);
+        const mediumPath = path.join(basePath, "medium", img.relative_path);
 
         // create only if not exists
         if (!fs.existsSync(smallPath)) {
@@ -51,7 +51,7 @@ function generateResizedImages() {
 
 
 function verificaFisierErori() {
-    const eroriPath = path.join(__dirname, "erori.json");
+    const eroriPath = path.join(__dirname, "resourses/json/erori.json");
 
     if (!fs.existsSync(eroriPath)) {
         console.error("ERROR: erori.json file is missing.");
@@ -67,8 +67,8 @@ function verificaFisierErori() {
         process.exit(1);
     }
 
-    if (!data.cale_baza) {
-        console.error("ERROR: Missing property 'cale_baza' in erori.json.");
+    if (!data.images) {
+        console.error("ERROR: Missing property 'images' in erori.json.");
         process.exit(1);
     }
 

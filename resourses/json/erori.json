@@ -1,8 +1,9 @@
 {
+  "images": "resourses/images/errors/",
   "eroare_default": {
     "titlu": "Unexpected error",
     "text": "Sorry, unexpected error occured.",
-    "imagine":"/resourses/images/unexpected.png"
+    "imagine":"unexpected.png"
   },
   "info_erori": [
     {
@@ -10,28 +11,28 @@
       "status": true,
       "titlu": "Page not found",
       "text": "Sorry, page not found.",
-      "imagine": "/resourses/images/404.jpg"
+      "imagine": "404.jpg"
     },
     {
       "identificator": 400,
       "status": true,
       "titlu": "Bad Request",
       "text": "Direct access to EJS template files is not allowed.",
-      "imagine": "/resourses/images/400.png"
+      "imagine": "400.png"
     },
     {
       "identificator": 403,
       "status": true,
       "titlu": "Forbidden",
       "text": "Access to this resource is forbidden.",
-      "imagine": "/resourses/images/403.jpg"
+      "imagine": "403.jpg"
     },
     {
       "identificator": 500,
       "status": true,
       "titlu": "Server error",
       "text": "Sorry, server error.",
-      "imagine": "/resourses/images/500.jpg"
+      "imagine": "500.jpg"
     }
   ]
 }
