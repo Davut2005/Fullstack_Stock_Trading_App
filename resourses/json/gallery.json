@@ -3,9 +3,43 @@
     "images": [
         {
             "relative_path": "img1.jpg",
-            "name": "Sunrise",
-            "description": "Morning view",
-            "time": "dimineata"
+            "name": "aapl_btc",
+            "description": "stock_analysis",
+            "time": "morning"
+        },
+        {
+            "relative_path": "img2.jpg",
+            "name": "cfd/fx",
+            "description": "cfd/fx_spreads",
+            "time": "morning"
+        },
+        {
+            "relative_path": "img3.jpg",
+            "name": "transactions",
+            "description": "transactions_page",
+            "time": "afternoon"
+        },
+        {
+            "relative_path": "img4.jpg",
+            "name": "stock_market_terms",
+            "description": "stock_market_terms",
+            "time": "morning"
+        },
+        {
+            "relative_path": "img5.jpg",
+            "name": "stock_market_lesson",
+            "description": "stock_market_lesson",
+            "time": "morning"
+        },
+        {
+            "relative_path": "img6.jpg",
+            "name": "Finance Chart",
+            "description": "Financial market graph",
+            "time": "evening",
+
+            "licenta": "CCO 1.0",
+            "autor": "Bezeeta444",
+            "sursa": "https://commons.wikimedia.org/wiki/File:Testing_analytic.jpg"
         }
     ]
 }

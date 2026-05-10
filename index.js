@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const sharp = require("sharp");
 
 const vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"];
 for (let folder of vect_foldere) {
@@ -26,6 +27,28 @@ function getImagesByTime() {
 
     return imgs;
 }
+
+function generateResizedImages() {
+    const basePath = gallery.cale_galerie;
+
+    gallery.imagini.forEach(img => {
+        const inputPath = path.join(basePath, img.cale_relativa);
+
+        const smallPath = path.join(basePath, "small", img.cale_relativa);
+        const mediumPath = path.join(basePath, "medium", img.cale_relativa);
+
+        // create only if not exists
+        if (!fs.existsSync(smallPath)) {
+            sharp(inputPath).resize(300).toFile(smallPath);
+        }
+
+        if (!fs.existsSync(mediumPath)) {
+            sharp(inputPath).resize(600).toFile(mediumPath);
+        }
+    });
+}
+
+
 
 function verificaFisierErori() {
     const eroriPath = path.join(__dirname, "erori.json");
@@ -170,5 +193,7 @@ app.get('/*page', function (req, res) {
         }
     });
 });
+
+generateResizedImages();
 
 app.listen(8080)
