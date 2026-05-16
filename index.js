@@ -13,6 +13,7 @@ for (let folder of vect_foldere) {
 
 let gallery = JSON.parse(fs.readFileSync("resourses/json/gallery.json"));
 
+
 function getImagesByTime() {
     const hour = new Date().getHours();
 
@@ -22,11 +23,12 @@ function getImagesByTime() {
                 "evening";
 
     let imgs = gallery.images.filter(img => img.time === period);
-
+    
     imgs = imgs.slice(0, imgs.length - (imgs.length % 3));
-
+    
     return imgs;
 }
+
 
 function generateResizedImages() {
     const basePath = gallery.gallery_path;

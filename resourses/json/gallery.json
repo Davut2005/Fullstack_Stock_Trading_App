@@ -2,44 +2,116 @@
     "gallery_path": "resourses/images/gallery",
     "images": [
         {
-            "relative_path": "img1.jpg",
-            "name": "aapl_btc",
-            "description": "stock_analysis",
-            "time": "morning"
-        },
-        {
-            "relative_path": "img2.jpg",
-            "name": "cfd/fx",
-            "description": "cfd/fx_spreads",
-            "time": "morning"
-        },
-        {
-            "relative_path": "img3.jpg",
-            "name": "transactions",
-            "description": "transactions_page",
-            "time": "afternoon"
-        },
-        {
-            "relative_path": "img4.jpg",
-            "name": "stock_market_terms",
-            "description": "stock_market_terms",
-            "time": "morning"
-        },
-        {
-            "relative_path": "img5.jpg",
-            "name": "stock_market_lesson",
-            "description": "stock_market_lesson",
-            "time": "morning"
-        },
-        {
-            "relative_path": "img6.png",
+            "relative_path": "img1.png",
             "name": "Fibanacci Chart",
             "description": "Fibanaci market graph",
-            "time": "evening",
+            "time": "morning",
 
             "license": "CC BY-SA 4.0",
             "author": "Bullsarena",
             "source": "https://commons.wikimedia.org/wiki/File:Chart_fibonacci.png"
+        },
+        {
+            "relative_path": "img2.jpg",
+            "name": "prices",
+            "description": "stock_prices",
+            "time": "morning"
+        },
+        {
+            "relative_path": "img3.jpg",
+            "name": "prices",
+            "description": "stock_prices",
+            "time": "morning"
+        },
+        {
+            "relative_path": "img4.jpg",
+            "name": "prices",
+            "description": "stock_prices",
+            "time": "morning"
+        },
+        {
+            "relative_path": "img5.jpg",
+            "name": "prices",
+            "description": "stock_prices",
+            "time": "morning"
+        },
+        {
+            "relative_path": "img6.jpg",
+            "name": "prices",
+            "description": "stock_prices",
+            "time": "morning"
+        },
+        {
+            "relative_path": "img7.jpg",
+            "name": "finance_review",
+            "description": "finance_review",
+            "time": "afternoon"
+        },
+        {
+            "relative_path": "img8.jpg",
+            "name": "stock_market_lesson",
+            "description": "stock_market_lesson",
+            "time": "afternoon"
+        },
+        {
+            "relative_path": "img9.jpg",
+            "name": "trading_strategy",
+            "description": "trading_strategy",
+            "time": "afternoon"
+        },
+        {
+            "relative_path": "img10.jpg",
+            "name": "trading_patterns",
+            "description": "trading_patterns",
+            "time": "afternoon"
+        },
+        {
+            "relative_path": "img11.jpg",
+            "name": "finance_patterns",
+            "description": "finance_patterns",
+            "time": "afternoon"
+        },
+        {
+            "relative_path": "img12.jpg",
+            "name": "finance_lesson",
+            "description": "finance_lesson",
+            "time": "afternoon"
+        },
+        {
+            "relative_path": "img13.jpg",
+            "name": "stock_analysis",
+            "description": "stock_analysis",
+            "time": "afternoon"
+        },
+        {
+            "relative_path": "img14.jpg",
+            "name": "stock_analysis",
+            "description": "stock_analysis",
+            "time": "afternoon"
+        },
+        {
+            "relative_path": "img15.jpg",
+            "name": "stock_analysis",
+            "description": "stock_analysis",
+            "time": "afternoon"
+        },
+        {
+            "relative_path": "img16.jpg",
+            "name": "stock_analysis",
+            "description": "stock_analysis",
+            "time": "afternoon"
+        },
+        {
+            "relative_path": "img17.jpg",
+            "name": "stock_analysis",
+            "description": "stock_analysis",
+            "time": "afternoon"
+        },
+        {
+            "relative_path": "img18.jpg",
+            "name": "stock_analysis",
+            "description": "stock_analysis",
+            "time": "afternoon"
         }
     ]
 }
