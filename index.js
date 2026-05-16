@@ -180,9 +180,19 @@ app.get(["/", "/index", "/home"], (req, res) => {
     });
 });
 
-app.get('/*page', function (req, res) {
+app.get('/*page', function (req, res, next) {
+
+    if (req.path.includes('.')) {
+        return next();
+    }
+
+    if (req.path.startsWith('/log_event') || req.path.startsWith('/api')) {
+        return res.status(404).json({ error: "Not found" });
+    }
+
     const page = req.path.substring(1);
     const view = `pagini/${page}`;
+    
     res.render(view, { images: getImagesByTime(), path: gallery.gallery_path }, function (eroare, rezultatRandare) {
         if (eroare) {
             if (eroare.message && eroare.message.startsWith('Failed to lookup view')) {
@@ -197,5 +207,10 @@ app.get('/*page', function (req, res) {
 });
 
 generateResizedImages();
+
+app.use((req, res) => {
+    afisareEroare(res, 404);
+});
+
 
 app.listen(8080)

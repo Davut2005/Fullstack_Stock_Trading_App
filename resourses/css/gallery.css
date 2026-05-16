@@ -1,8 +1,8 @@
 .galerie {
     display: grid;
+    justify-content: center;
     grid-template-columns: repeat(3, 1fr);
-    width: 100%;
-    gap: 10px;
+    gap: 20px;
 }
 
 @media (max-width: 1000px) {
@@ -25,6 +25,7 @@
 
 .galerie figure {
   counter-increment: litera;
+  overflow: hidden;
 }
 
 .galerie figcaption::before {
@@ -34,6 +35,9 @@
 
 .galerie img {
   transition: all 0.5s ease;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
 }
 
 .galerie img:hover {
