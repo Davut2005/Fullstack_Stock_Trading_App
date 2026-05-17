@@ -2,6 +2,15 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const sharp = require("sharp");
+const path = require("path");
+const fs = require("fs");
+
+const scss = require( "./helpers/scss" );
+
+global.folderScss = path.join( __dirname, "resurse/scss");
+global.folderCss = path.join(__dirname, "resurse/css");
+global.folderBackup = path.join(__dirname, "backup");
+
 
 const vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"];
 for (let folder of vect_foldere) {
@@ -10,6 +19,9 @@ for (let folder of vect_foldere) {
         fs.mkdirSync(folderPath);
     }
 }
+
+scss.compileazaTot();
+scss.watchScss();
 
 let gallery = JSON.parse(fs.readFileSync("resourses/json/gallery.json"));
 
